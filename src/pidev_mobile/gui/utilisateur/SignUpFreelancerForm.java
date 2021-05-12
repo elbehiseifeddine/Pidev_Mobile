@@ -1,0 +1,127 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pidev_mobile.gui.utilisateur;
+
+import pidev_mobile.base.BaseForm;
+import com.codename1.components.FloatingHint;
+import com.codename1.components.ToastBar;
+import com.codename1.ui.Button;
+import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
+import com.codename1.ui.Form;
+import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.util.Resources;
+import com.codename1.ui.validation.RegexConstraint;
+import com.codename1.ui.validation.Validator;
+import pidev_mobile.services.UtilisateurService;
+import pidev_mobile.utils.JavaMail;
+
+/**
+ *
+ * @author seifeddine
+ */
+public class SignUpFreelancerForm extends BaseForm {
+
+    public SignUpFreelancerForm(Resources res) {
+        super(new BorderLayout());
+        if (!Display.getInstance().isTablet()) {
+            BorderLayout bl = (BorderLayout) getLayout();
+            bl.defineLandscapeSwap(BorderLayout.NORTH, BorderLayout.EAST);
+            bl.defineLandscapeSwap(BorderLayout.SOUTH, BorderLayout.CENTER);
+        }
+
+        getTitleArea().setUIID("Container");
+        Form previous = Display.getInstance().getCurrent();
+        setUIID("SignIn");
+        add(BorderLayout.NORTH, new Label(res.getImage("LogoR.png"), "LogoLabel"));
+
+        Label nomCheck = new Label("   Votre nom doit contient au moins 3 caractèr");
+        nomCheck.setVisible(false);
+        Label prenomCheck = new Label("   Votre Prenom doit contient au moins 3 caractèr");
+        prenomCheck.setVisible(false);
+        Label emailCheck = new Label("   Ce n'est pas un Email Valide");
+        emailCheck.setVisible(false);
+        Label pwdCheck = new Label("   Votre Mot de Passe doit contient au moins 5 caractèr");
+        pwdCheck.setVisible(false);
+        TextField nom = new TextField("", " Nom", 20, TextField.ANY);
+
+        TextField prenom = new TextField("", " Prenom", 20, TextField.ANY);
+        TextField email = new TextField("", " E-Mail", 20, TextField.EMAILADDR);
+        Validator validator = new Validator();
+        validator.addConstraint(email, RegexConstraint.validEmail());
+        TextField password = new TextField("", " Password", 20, TextField.PASSWORD);
+        TextField confirmPassword = new TextField("", " Confirm Password", 20, TextField.PASSWORD);
+
+        Button next = new Button("Sign Up");
+        Button signIn = new Button("Sign In");
+        signIn.addActionListener(e -> new SignInForm(res).show());
+        signIn.setUIID("Link");
+        Label alreadHaveAnAccount = new Label("Already have an account?");
+
+        Container content = BoxLayout.encloseY(
+                nom,
+                nomCheck,
+                prenom,
+                prenomCheck,
+                email,
+                emailCheck,
+                password,
+                pwdCheck
+        );
+        Container content2 = FlowLayout.encloseCenterMiddle(
+                content
+        );
+
+        add(BorderLayout.CENTER, content2);
+        add(BorderLayout.SOUTH, BoxLayout.encloseY(
+                next,
+                FlowLayout.encloseCenter(alreadHaveAnAccount, signIn)
+        ));
+        next.addActionListener((e) -> {
+            emailCheck.setVisible(false);
+            nomCheck.setVisible(false);
+            prenomCheck.setVisible(false);
+            pwdCheck.setVisible(false);
+            if (!validator.isValid() || nom.getText().length() <= 3 || prenom.getText().length() <= 3 || password.getText().length() <= 3) {
+                ToastBar.showErrorMessage("Les champs ne sont pas valide");
+                if (!validator.isValid()) {
+                    emailCheck.setVisible(true);
+                }
+                if (nom.getText().length() <= 3) {
+                    nomCheck.setVisible(true);
+                }
+                if (prenom.getText().length() <= 3) {
+                    prenomCheck.setVisible(true);
+                }
+                if (password.getText().length() <= 3) {
+                    pwdCheck.setVisible(true);
+                }
+            } else {
+                UtilisateurService.getInstance().SignUpFreelancer(nom.getText(), prenom.getText(), email.getText(), password.getText());
+                JavaMail mail = new JavaMail();
+                mail.recipient = email.getText();
+                mail.type = "EmailConfirmation";
+                mail.start();
+                System.out.println("aaaaaaaaaaaaaaa" + UtilisateurService.returnTypeSU);
+                ToastBar.showErrorMessage("Une demande de confirmation a été envoyer ");
+
+                if (UtilisateurService.returnTypeSU.equals("exist")) {
+                    Dialog.show("Erreur", "Email Exist déja", "OK", null);
+                } else {
+                    new SignInForm(res).show();
+                }
+            }
+
+        });
+    }
+
+}
