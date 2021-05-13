@@ -125,7 +125,7 @@ public class UtilisateurService {
                     } else if (user.get("type") != null) {
 
                         if (user.get("type").equals("Admin des events")) {
-                            Preferences.set("type", "Freelancer");
+                            Preferences.set("type", "Admin des events");
                             Preferences.set("id", (Double) user.get("id"));
                             Preferences.set("nom", (String) user.get("nom"));
                             Preferences.set("prenom", (String) user.get("prenom"));
