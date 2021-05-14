@@ -10,6 +10,8 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.events.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,8 @@ public class AdminService {
         req = new ConnectionRequest();
     }
 
-    public void ajouterAdmin(Admin a) {
+    public boolean ajouterAdmin(Admin a) {
+        boolean ok = false;
         String url = Statics.BASE_URL + "/super/admin/CreateAdminJson?"
                 + "nom=" + a.getNom()
                 + "&prenom=" + a.getPrenom()
@@ -47,61 +50,86 @@ public class AdminService {
                 + "&login=" + a.getLogin()
                 + "&password=" + a.getPass()
                 + "&etat=" + a.isEtat();
+        System.out.println(url);
         req.setUrl(url);
-        req.addResponseListener((e) -> {
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                String responceData = new String(req.getResponseData());
 
-            String responceData = new String(req.getResponseData());
-
-            System.out.println("this is ajouter Admin in AdminService | data == " + responceData);
-
+                System.out.println("this is ajouter Admin in AdminService | data == " + responceData);
+                req.removeResponseListener(this);
+                if (responceData.equals("Exist")){
+                    Dialog.show("Error", "Admin existe deja ! ", "Ok", null);
+                }
+            }
         });
+//        req.addResponseListener((e) -> {
+//
+//            String responceData = new String(req.getResponseData());
+//
+//            System.out.println("this is ajouter Admin in AdminService | data == " + responceData);
+//
+//        });
+        try {
+            NetworkManager.getInstance().addToQueueAndWait(req);
+            ok = true;
+        } catch (Exception e) {
+            System.out.println("erreur lors de l'insertion de l admin");
+        }
+        return ok;
 
-        NetworkManager.getInstance().addToQueueAndWait(req);
     }
 
     public ArrayList<Admin> AfficherAdmins() {
         ArrayList<Admin> list = new ArrayList<>();
         String url = Statics.BASE_URL + "/super/adminJson";
         req.setUrl(url);
-        String data = new String(req.getResponseData());
-        req.addResponseListener((NetworkEvent evt) -> {
-            JSONParser json;
-            json = new JSONParser();
-            try {
-                Map<String, Object> MapAdmins = json.parseJSON(new CharArrayReader(data.toCharArray()));
-                List<Map<String, Object>> ListOfMap = (List<Map<String, Object>>) MapAdmins.get("root");
+        req.setPost(false);
+        JSONParser json = new JSONParser();
+        //String data = new String(req.getResponseData());
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                try {
+                    Map<String, Object> MapAdmins = json.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    List<Map<String, Object>> ListOfMap = (List<Map<String, Object>>) MapAdmins.get("root");
 
-                for (Map<String, Object> obj : ListOfMap) {
+                    for (Map<String, Object> obj : ListOfMap) {
 
-                    Admin a = new Admin();
-                    float id = Float.parseFloat(obj.get("id").toString());
-                    String nom = String.valueOf(obj.get("nom"));
-                    String prenom = String.valueOf(obj.get("prenom"));
-                    String login = String.valueOf(obj.get("login"));
-                    String password = String.valueOf(obj.get("pass"));
-                    String type = String.valueOf(obj.get("type"));
-                    boolean etat = Boolean.parseBoolean(obj.get("etat").toString());
+                        Admin a = new Admin();
+                        float id = Float.parseFloat(obj.get("id").toString());
+                        String nom = String.valueOf(obj.get("nom"));
+                        String prenom = String.valueOf(obj.get("prenom"));
+                        String login = String.valueOf(obj.get("login"));
+                        String password = String.valueOf(obj.get("password"));
+                        String type = String.valueOf(obj.get("type"));
+                        boolean etat = Boolean.parseBoolean(obj.get("etat").toString());
+                        System.out.println(id + "*******" + prenom + "*********" + nom + "*********** " + password);
+                        float approuve = Float.parseFloat(obj.get("approuve").toString());
+                        float nonapprouve = Float.parseFloat(obj.get("nonapprouve").toString());
 
-                    float approuve = Float.parseFloat(obj.get("approuve").toString());
-                    float nonapprouve = Float.parseFloat(obj.get("nonapprouve").toString());
+                        a.setId((int) id);
+                        a.setNom(nom);
+                        a.setPrenom(prenom);
+                        a.setLogin(login);
+                        a.setPass(password);
+                        a.setType(type);
+                        a.setEtat(etat);
+                        a.setApprouve((int) approuve);
+                        a.setNonApprouve((int) nonapprouve);
 
-                    a.setId((int) id);
-                    a.setNom(nom);
-                    a.setPrenom(prenom);
-                    a.setLogin(login);
-                    a.setPass(password);
-                    a.setType(type);
-                    a.setEtat(etat);
-                    a.setApprouve((int) approuve);
-                    a.setNonApprouve((int) nonapprouve);
-
-                    list.add(a);
+                        list.add(a);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                req.removeResponseListener(this);
             }
         });
+
         NetworkManager.getInstance().addToQueueAndWait(req);
+
         return list;
     }
 
@@ -114,8 +142,6 @@ public class AdminService {
             JSONParser json = new JSONParser();
             try {
                 Map<String, Object> MapAdmins = json.parseJSON(new CharArrayReader(data.toCharArray()));
-
-                
 
                 String nom = String.valueOf(MapAdmins.get("nom"));
                 String prenom = String.valueOf(MapAdmins.get("prenom"));
@@ -137,50 +163,87 @@ public class AdminService {
                 a.setApprouve((int) approuve);
                 a.setNonApprouve((int) nonapprouve);
             } catch (IOException ex) {
-                
+
                 System.out.println("this is detail fucnction in admin service || " + ex.getMessage());
             }
-            System.out.println("detail Admin ==> "+data);
+            System.out.println("detail Admin ==> " + data);
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
-        
+
         return a;
 
     }
 
-    public void updateAdmin(Admin a) {
+    public boolean updateAdmin(Admin a) {
+        boolean ok = false;
+
+        System.out.println("      yoooo          admin id = " + a.getId() + "                 ");
+
         String url = Statics.BASE_URL + "/super/admin/UpdateAdminJson?"
-                + "nom=" + a.getNom()
+                + "id=" + a.getId()
+                + "&nom=" + a.getNom()
                 + "&prenom=" + a.getPrenom()
                 + "&type=" + a.getType()
                 + "&login=" + a.getLogin()
                 + "&password=" + a.getPass()
                 + "&etat=" + a.isEtat();
+        System.out.println(url);
         req.setUrl(url);
-        req.addResponseListener((e) -> {
 
-            String responceData = new String(req.getResponseData());
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                String responceData = new String(req.getResponseData());
 
-            System.out.println("this is update Admin in AdminService | reponse == " + responceData);
-
+                System.out.println("this is update Admin in AdminService | data == " + responceData);
+                req.removeResponseListener(this);
+            }
         });
+//        req.addResponseListener((e) -> {
+//
+//            String responceData = new String(req.getResponseData());
+//
+//            System.out.println("this is update Admin in AdminService | reponse == " + responceData);
+//
+//        });
 
-        NetworkManager.getInstance().addToQueueAndWait(req);
+        try {
+            NetworkManager.getInstance().addToQueueAndWait(req);
+            ok = true;
+        } catch (Exception ex) {
+            System.out.println("this is update Admin in AdminService | " + ex.getMessage());
+        }
+        return ok;
     }
-     
-    public void deleteAdmin(int id) {
-         String url = Statics.BASE_URL + "/super/admin/DeleteAdminJson?id="+id;
-               
+
+    public boolean deleteAdmin(int id) {
+        boolean ok = false;
+        String url = Statics.BASE_URL + "/super/admin/DeleteAdminJson?id=" + id;
+        System.out.println(url);
         req.setUrl(url);
-        req.addResponseListener((e) -> {
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                String responceData = new String(req.getResponseData());
 
-            String responceData = new String(req.getResponseData());
-
-            System.out.println("this is delete Admin in AdminService | reponse == " + responceData);
-
+                System.out.println("this is delete Admin in AdminService | reponse == " + responceData);
+                req.removeResponseListener(this);
+            }
         });
-
-        NetworkManager.getInstance().addToQueueAndWait(req);
-     }
+//        req.addResponseListener((e) -> {
+//
+//            String responceData = new String(req.getResponseData());
+//
+//            System.out.println("this is delete Admin in AdminService | reponse == " + responceData);
+//
+//        });
+try {
+             NetworkManager.getInstance().addToQueueAndWait(req);
+             ok = true;
+        } catch (Exception e) {
+            System.out.println("erreur lors du suppression de l admin");
+        }
+       return ok;
+    }
 
 }

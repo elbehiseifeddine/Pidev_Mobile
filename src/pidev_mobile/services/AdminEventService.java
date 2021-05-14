@@ -9,12 +9,9 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
-import com.codename1.l10n.SimpleDateFormat;
 import java.io.CharArrayReader;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import pidev_mobile.entities.EventLoisir;
@@ -136,15 +133,15 @@ public class AdminEventService {
                     float ids = Float.parseFloat(obj.get("id_so_id").toString());
 
                     //conversion date 
-                    String dateConverter = obj.get("date_debut").toString().substring(obj.get("date_debut").toString().indexOf("timestamp")+10,  obj.get("date_debut").toString().lastIndexOf(")"));
-                    Date currentDate = new Date(Double.valueOf(dateConverter).longValue() *1000);
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy_mm_dd");
-                    String dateString = formatter.format(currentDate);
+//                    String dateConverter = obj.get("date_debut").toString().substring(obj.get("date_debut").toString().indexOf("timestamp")+10,  obj.get("date_debut").toString().lastIndexOf(")"));
+//                    Date currentDate = new Date(Double.valueOf(dateConverter).longValue() *1000);
+//                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy_mm_dd");
+//                    String dateString = formatter.format(currentDate);
                     //a.setDateDebut(dateString);
                     
                     //sinon
-                    Timestamp dateCreation = (Timestamp) obj.get("date_debut");
-                    a.setDateDebut(dateCreation);
+//                    Timestamp dateCreation = (Timestamp) obj.get("date_debut");
+//                    a.setDateDebut(dateCreation);
                     
                    a.setId((int)id);
                    a.setDescription(description);
@@ -192,15 +189,15 @@ public class AdminEventService {
 //                    float ids = Float.parseFloat(obj.get("id_so_id").toString());
 
                     //conversion date 
-                    String dateConverter = obj.get("date_debut").toString().substring(obj.get("date_debut").toString().indexOf("timestamp")+10,  obj.get("date_debut").toString().lastIndexOf(")"));
-                    Date currentDate = new Date(Double.valueOf(dateConverter).longValue() *1000);
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy_mm_dd");
-                    String dateString = formatter.format(currentDate);
+//                    String dateConverter = obj.get("date_debut").toString().substring(obj.get("date_debut").toString().indexOf("timestamp")+10,  obj.get("date_debut").toString().lastIndexOf(")"));
+//                    Date currentDate = new Date(Double.valueOf(dateConverter).longValue() *1000);
+//                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy_mm_dd");
+//                    String dateString = formatter.format(currentDate);
                     //a.setDateDebut(dateString);
                     
                     //sinon
-                    Timestamp dateCreation = (Timestamp) obj.get("date_debut");
-                    a.setDateDebut(dateCreation);
+//                    Timestamp dateCreation = (Timestamp) obj.get("date_debut");
+//                    a.setDateDebut(dateCreation);
                     
                     a.setDescription(description);
                     a.setDomaine(domaine);

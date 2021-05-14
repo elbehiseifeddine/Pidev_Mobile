@@ -5,8 +5,7 @@
  */
 package pidev_mobile.entities;
 
-import java.sql.Date;
-import javafx.scene.control.TableColumn;
+import java.util.Date;
 
 /**
  *

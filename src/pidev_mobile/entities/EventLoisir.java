@@ -5,31 +5,37 @@
  */
 package pidev_mobile.entities;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
+
+
+
 
 /**
  *
- * @author ahmed
+ * @author ASUS
  */
 public class EventLoisir {
-    public int id;
+      public int id;
     public String Labelle;
     public String Description;
     public String Lieu;
-    public Timestamp DateDebut;
-    public Timestamp DateFin;
+    public Date DateDebut;
+    public Date DateFin;
     public String Domaine;
     public int nbParticipant;
     public boolean Etat;
-    public long Lng;
-    public long Lat;
+    public double Lng;
+    public double Lat;
     private String imageE;
 
     public EventLoisir() {
     }
 
-    public EventLoisir(int id, String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, long Lng, long Lat,String image) {
+    public EventLoisir(int id) {
+        this.id = id;
+    }
+
+    public EventLoisir(int id, String Labelle, String Description, String Lieu, Date DateDebut, Date DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.id = id;
         this.Labelle = Labelle;
         this.Description = Description;
@@ -44,7 +50,7 @@ public class EventLoisir {
         this.imageE=image;
     }
 
-    public EventLoisir(String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, long Lng, long Lat,String image) {
+    public EventLoisir(String Labelle, String Description, String Lieu, Date DateDebut, Date DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.Labelle = Labelle;
         this.Description = Description;
         this.Lieu = Lieu;
@@ -56,14 +62,6 @@ public class EventLoisir {
         this.Lng = Lng;
         this.Lat = Lat;
         this.imageE=image;
-    }
-
-    public EventLoisir(String text, String text0, String text1, Timestamp valueOf, Timestamp valueOf0, String text2, int parseInt, boolean b, double lng, double lat, String text3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public EventLoisir(int id, String text, String text0, String text1, Timestamp valueOf, Timestamp valueOf0, String text2, int parseInt, boolean b, double lng, double lat, String text3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -98,19 +96,19 @@ public class EventLoisir {
         this.Lieu = Lieu;
     }
 
-    public Timestamp getDateDebut() {
+    public Date getDateDebut() {
         return DateDebut;
     }
 
-    public void setDateDebut(Timestamp DateDebut) {
+    public void setDateDebut(Date DateDebut) {
         this.DateDebut = DateDebut;
     }
 
-    public Timestamp getDateFin() {
+    public Date getDateFin() {
         return DateFin;
     }
 
-    public void setDateFin(Timestamp DateFin) {
+    public void setDateFin(Date DateFin) {
         this.DateFin = DateFin;
     }
 
@@ -138,19 +136,19 @@ public class EventLoisir {
         this.Etat = Etat;
     }
 
-    public long getLng() {
+    public double getLng() {
         return Lng;
     }
 
-    public void setLng(long Lng) {
+    public void setLng(double Lng) {
         this.Lng = Lng;
     }
 
-    public long getLat() {
+    public double getLat() {
         return Lat;
     }
 
-    public void setLat(long Lat) {
+    public void setLat(double Lat) {
         this.Lat = Lat;
     }
 
@@ -162,7 +160,4 @@ public class EventLoisir {
         this.imageE = imageE;
     }
     
-    
-    
 }
-
