@@ -30,6 +30,7 @@ public class FormationService {
     private static FormationService instance;
     private ConnectionRequest req;
     public ArrayList<Formation> Forms;
+        public ArrayList<Formation> Forms1;
     public boolean valide;
     public boolean ResultOK;
 
@@ -44,10 +45,11 @@ public class FormationService {
     }
     
     
-     public boolean addFormation(Formation F){
+     public boolean addFormation(Formation F,String type,int idu){
          ResultOK=false;
          String url=BASE_URL+"/addFormationMobile/?labelle="+F.getLabelle()+"&description="+F.getDescription()+"&domaine="+F.getDomaine()+"&lieu="+F.getLieu()+
-                 "&dated="+F.getDateDebut()+"&datef="+F.getDateFin()+"&montant="+F.getMontant()+/*"/"+F.isEtat()+*/"&lat="+F.getLat()+"&lng="+F.getLng()+"&image="+F.getImageF();
+                 "&dated="+F.getDateDebut()+"&datef="+F.getDateFin()+"&montant="+F.getMontant()+/*"/"+F.isEtat()+*/"&lat="+F.getLat()+"&lng="+F.getLng()+"&image="+F.getImageF()
+                 +"&type="+type+"&idu="+idu;
           req.setUrl(url);
             req.setPost(false);
          req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -106,7 +108,7 @@ public class FormationService {
              }
          });
          NetworkManager.getInstance().addToQueueAndWait(req);
-         System.out.println(Forms.size()+"ooooooouu");
+         
          return Forms;
          
      }
@@ -146,13 +148,13 @@ public class FormationService {
          req.addResponseListener(new ActionListener<NetworkEvent>() {
              @Override
              public void actionPerformed(NetworkEvent evt) {
-                 Forms=parseResponse(new String(req.getResponseData()));
+                 Forms1=parseResponse(new String(req.getResponseData()));
                  req.removeResponseListener(this);
              }
          });
          NetworkManager.getInstance().addToQueueAndWait(req);
          
-         return Forms;
+         return Forms1;
          
      } 
         

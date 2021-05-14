@@ -68,8 +68,8 @@ fab.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent evt) {
                  new FormationService().SupprimerFormation(f);
-                  FormMesFormation p=(FormMesFormation)previous;
-                 p.refreshLayoutover();
+                  FormAcceuilFormation p=(FormAcceuilFormation)previous;
+                  p.refreshLayout();
                  
               }
           });

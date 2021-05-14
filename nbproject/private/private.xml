@@ -4,13 +4,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/gui/formation/FormMaFormationDetails.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/gui/formation/FormMesFormation.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/gui/formation/FormFormationDetails.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/gui/formation/FormListMesParticipations.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/services/FormationService.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/myapp/MyApplication.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/gui/formation/FormMaParticipationFDetails.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/Pidev_mobile/src/com/pidev_mobile/services/EventService.java</file>
         </group>
     </open-files>
 </project-private>

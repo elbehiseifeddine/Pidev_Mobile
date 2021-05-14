@@ -171,9 +171,9 @@ calendar.setTime(f.getDateFin());
                     //datedeb=new Date( new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
                    
                     if(new FormationService().ModifierFormation(F)){
-                       FormMesFormation p=(FormMesFormation)previous;
-                        p.refreshLayoutover();
-                            }             
+                    FormAcceuilFormation p=(FormAcceuilFormation)previous;
+                           p.refreshLayout();
+                    }
                        else{
                            
                        }

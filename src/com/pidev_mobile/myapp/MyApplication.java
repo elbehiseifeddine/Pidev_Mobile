@@ -18,15 +18,18 @@ import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
+import com.codename1.ui.SideMenuBar;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.table.TableLayout;
+import com.pidev_mobile.gui.formation.FormAcceuilFormation;
 import com.pidev_mobile.gui.formation.FormAjoutFormation;
 import com.pidev_mobile.gui.formation.FormListFormation;
 import com.pidev_mobile.gui.formation.FormListMesParticipations;
+import com.pidev_mobile.gui.formation.FormMapFormation;
 import com.pidev_mobile.gui.formation.FormMesFormation;
 
 /**
@@ -43,6 +46,14 @@ public class MyApplication {
         updateNetworkThreadCount(2);
 
         theme = UIManager.initFirstTheme("/theme");
+         try {
+            Resources theme = Resources.openLayered("/theme");
+            UIManager.getInstance().setThemeProps(theme.getTheme(theme.getThemeResourceNames()[0]));
+            Display.getInstance().setCommandBehavior(Display.COMMAND_BEHAVIOR_SIDE_NAVIGATION);
+            UIManager.getInstance().getLookAndFeel().setMenuBarClass(SideMenuBar.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Enable Toolbar on all Forms by default
         Toolbar.setGlobalToolbar(true);
@@ -68,7 +79,7 @@ public class MyApplication {
             current.show(); 
             return;
         }
-     new FormListMesParticipations().show();
+     new FormAcceuilFormation().show();
     }
 
     public void stop() {

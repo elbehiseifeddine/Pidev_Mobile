@@ -31,8 +31,8 @@ import java.util.List;
  * @author ASUS
  */
 public class FormMesFormation extends Form {
-private List<Formation> formations;
-    public FormMesFormation() {
+private List<Formation> Listformations;
+    public FormMesFormation(FormAcceuilFormation form) {
           setLayout(BoxLayout.y());
          setTitle("Mes Formations");
          //setUIID("background");
@@ -41,29 +41,36 @@ private List<Formation> formations;
         //this.setUIID("background");
         final FormMesFormation fl = this;
 
-         formations = new ArrayList<>();
-            Container List = new InfiniteContainer() {
+         //Listformations = new ArrayList<>();
+         Listformations = FormationService.getInstance().getFParUser("freelancer",1);
+         for(int i=0;i<Listformations.size();i++){
+             this.add(addMaFormationholder(Listformations.get(i),form));
+         }
+           /* Container List = new InfiniteContainer() {
             @Override
             public Component[] fetchComponents(int index, int amount) {
+                System.out.println("index mes"+index);
                 if (index == 0) {
-                    formations = FormationService.getInstance().getFParUser("freelancer",1);
+                    Listformations = FormationService.getInstance().getFParUser("freelancer",1);
                 }
-                  if (index + amount > formations.size()) {
-                    amount = formations.size() - index;
+                  if (index + amount > Listformations.size()) {
+                    amount = Listformations.size() - index;
                 }
                 if (amount <= 0) {
                     return null;
                 }
                 Component[] more = new Component[amount];
                 for (int i = 0; i < amount; i++) {
-                    Formation e = formations.get(i);
+                    Formation e = Listformations.get(i);
                     Container holder = new Container(BoxLayout.x());
                     Container holderDetails = new Container(BoxLayout.y());
-                    Label lbnom = new Label(formations.get(i).getLabelle());
+                    Label lbnom = new Label(Listformations.get(i).getLabelle());
+                    System.out.println("ooooooooo"+Listformations.get(i).getLabelle());
+                 
 
                     ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
-                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateDebut()));
-                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateFin()));
+                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Listformations.get(i).getDateDebut()));
+                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Listformations.get(i).getDateFin()));
                     holderDetails.addAll(lbnom,ldated,ldatef);
                     holder.addAll(image, holderDetails);
                     lbnom.addPointerReleasedListener((evt) -> {
@@ -82,17 +89,17 @@ private List<Formation> formations;
         };
         List.setScrollableY(false);
       // List.setUIID("background");
-      FloatingActionButton fab = FloatingActionButton.createFAB(FontImage.MATERIAL_ADD);
+   
+        this.add(List);*/
+           FloatingActionButton fab = FloatingActionButton.createFAB(FontImage.MATERIAL_ADD);
 fab.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent evt) {
-                 new FormAjoutFormation().show();
+                 new FormAjoutFormation(form).show();
                  
               }
           });
 fab.bindFabToContainer(this.getContentPane());
-        this.add(List);
-        
          Style iconStyle = this.getUIManager().getComponentStyle("Title");
     FontImage leftArrow = FontImage.createMaterial(FontImage.MATERIAL_ARROW_BACK, iconStyle, 4);
     FontImage rightArrow = FontImage.createMaterial(FontImage.MATERIAL_ARROW_FORWARD, iconStyle, 4);
@@ -107,7 +114,7 @@ fab.bindFabToContainer(this.getContentPane());
     
 }
 
-      public void refreshLayoutover() {
+      public FormMesFormation refreshLayoutover(FormAcceuilFormation form) {
           System.out.println("dkhal li methode");
         this.removeAll();
         
@@ -115,61 +122,33 @@ fab.bindFabToContainer(this.getContentPane());
          
        
         //this.setUIID("background");
-        final FormMesFormation fl = this;
+        Listformations = FormationService.getInstance().getFParUser("freelancer",1);
+         for(int i=0;i<Listformations.size();i++){
+             this.add(addMaFormationholder(Listformations.get(i), form));
+         }
 
-         formations = new ArrayList<>();
-            Container List = new InfiniteContainer() {
-                 
-            @Override
-            public Component[] fetchComponents(int index, int amount) {
-                System.out.println("dkhal lil container");
-                
-                if (index == 0) {
-                    formations = FormationService.getInstance().getFParUser("freelancer",1);
-                    System.out.println("dkhal lil if");
-                }
-                  if (index + amount > formations.size()) {
-                    amount = formations.size() - index;
-                }
-                if (amount <= 0) {
-                    return null;
-                }
-                Component[] more = new Component[amount];
-                for (int i = 0; i < amount; i++) {
-                    Formation e = formations.get(i);
-                    Container holder = new Container(BoxLayout.x());
+        this.revalidate();
+        return this;
+        
+        
+    }
+      public Container addMaFormationholder(Formation f,FormAcceuilFormation form){
+          Container holder = new Container(BoxLayout.x());
                     Container holderDetails = new Container(BoxLayout.y());
-                    Label lbnom = new Label(formations.get(i).getLabelle());
+                    Label lbnom = new Label(f.getLabelle());
 
                     ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
-                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateDebut()));
-                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateFin()));
+                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateDebut()));
+                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateFin()));
                     holderDetails.addAll(lbnom,ldated,ldatef);
                     holder.addAll(image, holderDetails);
                     lbnom.addPointerReleasedListener((evt) -> {
 
-                        FormMaFormationDetails fd = new FormMaFormationDetails(e,FormMesFormation.this);
+                        FormMaFormationDetails fd = new FormMaFormationDetails(f,form);
                         fd.show();
                     });
                     holder.setLeadComponent(lbnom);
-                  //  holder.setUIID("background");
-                    more[i] = holder;
-                }
-                return more;
-
-            }
-
-        };
-        List.setScrollableY(false);
-      // List.setUIID("background");
-    
-        this.add(List);
-        
-        
-
-        this.revalidate();
-        this.show();
-        
-    }
+                    return holder;
+      }
     }
 

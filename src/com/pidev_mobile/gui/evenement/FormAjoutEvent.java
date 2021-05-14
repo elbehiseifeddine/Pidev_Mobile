@@ -6,6 +6,8 @@
 package com.pidev_mobile.gui.evenement;
 
 import com.codename1.io.Log;
+import com.codename1.l10n.ParseException;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -16,23 +18,33 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.table.TableLayout;
+import com.pidev_mobile.entities.EventLoisir;
+import com.pidev_mobile.entities.Formation;
+import com.pidev_mobile.gui.formation.FormAcceuilFormation;
 import com.pidev_mobile.myapp.MyApplication;
+import com.pidev_mobile.services.EventService;
+import com.pidev_mobile.services.FormationService;
+import java.util.Date;
 
 /**
  *
  * @author ASUS
  */
 public class FormAjoutEvent extends Form {
-
-    public FormAjoutEvent() {
+double lat=0;
+double lng=0;
+TextField Lieu;
+    public FormAjoutEvent(Form f) {
       Toolbar tb = this.getToolbar();
-        setTitle("Ajout Formation"); 
+        setTitle("Ajout Event"); 
         setLayout(new BorderLayout());
         
          // we create 4mm material arrow images for the back button and the Get started button
@@ -64,7 +76,7 @@ public class FormAjoutEvent extends Form {
     TextField Lebelle = new TextField("", "Lebelle");
     TextField domaine = new TextField("", "Domaine");
     TextField description = new TextField("", "Description");
-    TextField Lieu = new TextField("", "Lieu" );
+    Lieu = new TextField("", "Lieu" );
    TextField montant = new TextField("", "nombre participant" );
    TextField image = new TextField("", "image" );
     Picker dateDD = new Picker();
@@ -107,9 +119,42 @@ public class FormAjoutEvent extends Form {
 
 
     // The button in the south portion needs the arrow icon to be on the right side so we place the text on the left
-    Button southButton = new Button("Get started", rightArrow);
-    southButton.setTextPosition(Component.LEFT);
+   Button southButton = new Button("Ajouter");
+    
     southButton.setUIID("SouthButton");
+    southButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    /* Date dateddeb=new SimpleDateFormat("yyyy-MM-dd").format(dateDD.getDate());*/
+                    // System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(dateDD.getDate()));
+                    //System.out.println(new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
+                    
+                    
+                    Date datedeb=new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(
+                            new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
+                      Date datefin=new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(
+                            new SimpleDateFormat("yyyy-mm-dd").format(dateFD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateFT.getText()+":00"));
+                    System.out.println(datedeb);
+                    EventLoisir E=new EventLoisir(Lebelle.getText(), description.getText(), domaine.getText(), Lieu.getText(), datedeb, datefin, Integer.parseInt(montant.getText()), true, 1, 1, image.getText());
+                    //datedeb=new Date( new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
+                   
+                    if(new EventService().addEvent(E,"freelancer",1)){
+                           FormAcceuilEvent p=(FormAcceuilEvent)f;
+                           p.refreshLayout();
+                        
+                           
+                       }             
+                       else{
+                           System.out.println("hors jeu");
+                       }
+
+                } catch (ParseException ex) {
+                    System.out.println("nien");
+                }
+            }
+        });
+
 
     // we add the components and the separators the center portion contains all of the elements in a box
     // Y container which we allow to scroll. BorderLayout Containers implicitly disable scrolling
@@ -146,6 +191,14 @@ public class FormAjoutEvent extends Form {
     sep.setShowEvenIfBlank(true);
     return sep;
 }
+       
+        public void setInfo(String l, double lat1,double lng1){
+           Lieu.setText(l);
+           lat=lat1;
+           lng=lng1;
+           
+           
+       }
     
     
 }

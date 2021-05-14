@@ -35,7 +35,7 @@ public class EventLoisir {
         this.id = id;
     }
 
-    public EventLoisir(int id, String Labelle, String Description, String Lieu, Date DateDebut, Date DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
+    public EventLoisir(int id, String Labelle, String Description,String Domaine, String Lieu, Date DateDebut, Date DateFin,  int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.id = id;
         this.Labelle = Labelle;
         this.Description = Description;
@@ -50,7 +50,7 @@ public class EventLoisir {
         this.imageE=image;
     }
 
-    public EventLoisir(String Labelle, String Description, String Lieu, Date DateDebut, Date DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
+    public EventLoisir(String Labelle, String Description,String Domaine, String Lieu, Date DateDebut, Date DateFin,  int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.Labelle = Labelle;
         this.Description = Description;
         this.Lieu = Lieu;

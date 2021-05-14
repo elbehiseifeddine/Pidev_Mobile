@@ -40,8 +40,10 @@ import java.util.Date;
  * @author ASUS
  */
 public class FormAjoutFormation extends Form {
-
-    public FormAjoutFormation() {
+double lat=0;
+double lng=0;
+TextField Lieu;
+    public FormAjoutFormation(Form f) {
         Toolbar tb = this.getToolbar();
         setTitle("Ajout Formation"); 
         setLayout(new BorderLayout());
@@ -75,7 +77,13 @@ public class FormAjoutFormation extends Form {
     TextField Lebelle = new TextField("", "Lebelle");
     TextField domaine = new TextField("", "Domaine");
     TextField description = new TextField("", "Description");
-    TextField Lieu = new TextField("", "Lieu" );
+     Lieu = new TextField("", "Lieu" );
+     Lieu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                new FormMapFormation(FormAjoutFormation.this).show();
+            }
+        });
    TextField montant = new TextField("", "montant" );
    TextField image = new TextField("", "image" );
     Picker dateDD = new Picker();
@@ -138,8 +146,9 @@ public class FormAjoutFormation extends Form {
                     Formation F =new Formation(Lebelle.getText(), description.getText(), domaine.getText(), Lieu.getText(), datedeb, datefin, Float.parseFloat(montant.getText()), true, 1, 1, image.getText());
                     //datedeb=new Date( new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
                     System.out.println(datedeb);
-                    if(new FormationService().addFormation(F)){
-                           System.out.println("gool");
+                    if(new FormationService().addFormation(F,"freelancer",1)){
+                           FormAcceuilFormation p=(FormAcceuilFormation)f;
+                           p.refreshLayout();
                         
                            
                        }             
@@ -188,6 +197,14 @@ public class FormAjoutFormation extends Form {
     sep.setShowEvenIfBlank(true);
     return sep;
 }
+       
+       public void setInfo(String l, double lat1,double lng1){
+           Lieu.setText(l);
+           lat=lat1;
+           lng=lng1;
+           
+           
+       }
     }
     
     

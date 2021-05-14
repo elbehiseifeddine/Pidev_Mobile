@@ -32,14 +32,18 @@ import java.util.List;
  */
 public class FormListMesParticipations extends Form {
 private List<Formation> formations;
-    public FormListMesParticipations() {
+    public FormListMesParticipations(FormAcceuilFormation form) {
          setLayout(BoxLayout.y());
          setTitle("Mes Participation");
          //setUIID("background");
          
          this.getToolbar().setUIID("toolbar");
+         formations = FormationService.getInstance().getParticipation("freelancer",1);
+         for(int i=0;i<formations.size();i++){
+             this.add(addpartholder(formations.get(i), form));
+         }
         //this.setUIID("background");
-        final FormListMesParticipations fl = this;
+        /*final FormListMesParticipations fl = this;
 
          formations = new ArrayList<>();
             Container List = new InfiniteContainer() {
@@ -83,7 +87,7 @@ private List<Formation> formations;
         List.setScrollableY(false);
       // List.setUIID("background");
      
-        this.add(List);
+        this.add(List);*/
         
          Style iconStyle = this.getUIManager().getComponentStyle("Title");
     FontImage leftArrow = FontImage.createMaterial(FontImage.MATERIAL_ARROW_BACK, iconStyle, 4);
@@ -99,7 +103,7 @@ private List<Formation> formations;
     
 }
     
-     public void refreshLayoutover() {
+     public FormListMesParticipations refreshLayoutover(FormAcceuilFormation form) {
          
         this.removeAll();
         
@@ -107,59 +111,36 @@ private List<Formation> formations;
          
        
         //this.setUIID("background");
-         final FormListMesParticipations fl = this;
-
-         formations = new ArrayList<>();
-            Container List = new InfiniteContainer() {
-            @Override
-            public Component[] fetchComponents(int index, int amount) {
-                if (index == 0) {
-                    formations = FormationService.getInstance().getParticipation("freelancer",1);
-                }
-                  if (index + amount > formations.size()) {
-                    amount = formations.size() - index;
-                }
-                if (amount <= 0) {
-                    return null;
-                }
-                Component[] more = new Component[amount];
-                for (int i = 0; i < amount; i++) {
-                    Formation e = formations.get(i);
-                    Container holder = new Container(BoxLayout.x());
-                    Container holderDetails = new Container(BoxLayout.y());
-                    Label lbnom = new Label(formations.get(i).getLabelle());
-
-                    ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
-                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateDebut()));
-                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateFin()));
-                    holderDetails.addAll(lbnom,ldated,ldatef);
-                    holder.addAll(image, holderDetails);
-                    lbnom.addPointerReleasedListener((evt) -> {
-
-                        FormMaParticipationFDetails fd = new FormMaParticipationFDetails(e,FormListMesParticipations.this);
-                        fd.show();
-                    });
-                    holder.setLeadComponent(lbnom);
-                  //  holder.setUIID("background");
-                    more[i] = holder;
-                }
-                return more;
-
-            }
-
-        };
-        List.setScrollableY(false);
-      // List.setUIID("background");
-     
-        this.add(List);
-        
+        formations = FormationService.getInstance().getParticipation("freelancer",1);
+         for(int i=0;i<formations.size();i++){
+             this.add(addpartholder(formations.get(i), form));
+         }
         
 
         this.revalidate();
         ToastBar.showMessage("participation annulée", FontImage.MATERIAL_INFO);
-        this.show();
+        return this;
         
     }
+     
+     public Container addpartholder(Formation f,FormAcceuilFormation form){
+          Container holder = new Container(BoxLayout.x());
+                    Container holderDetails = new Container(BoxLayout.y());
+                    Label lbnom = new Label(f.getLabelle());
+
+                    ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
+                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateDebut()));
+                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateFin()));
+                    holderDetails.addAll(lbnom,ldated,ldatef);
+                    holder.addAll(image, holderDetails);
+                    lbnom.addPointerReleasedListener((evt) -> {
+
+                         FormMaParticipationFDetails fd = new FormMaParticipationFDetails(f,form);
+                        fd.show();
+                    });
+                    holder.setLeadComponent(lbnom);
+                    return holder;
+     }
 
 
     }

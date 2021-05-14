@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class FormListFormation extends Form{
 private List<Formation> formations;
-    public FormListFormation() {
+    public FormListFormation(FormAcceuilFormation form) {
          setLayout(BoxLayout.y());
          setTitle("Formations");
          //setUIID("background");
@@ -40,12 +40,18 @@ private List<Formation> formations;
         //this.setUIID("background");
         final FormListFormation fl = this;
 
-         formations = new ArrayList<>();
-            Container List = new InfiniteContainer() {
+         //formations = new ArrayList<>();
+        formations = FormationService.getInstance().getAll("freelancer",1);
+        for(int i=0;i<formations.size();i++){
+            this.add(addFromationHolder(formations.get(i),form));
+        }
+         
+            /*Container List = new InfiniteContainer() {
             @Override
             public Component[] fetchComponents(int index, int amount) {
+             System.out.println("index "+index);
                 if (index == 0) {
-                    formations = FormationService.getInstance().getAll("freelancer",2);
+                    formations = FormationService.getInstance().getAll("freelancer",1);
                 }
                   if (index + amount > formations.size()) {
                     amount = formations.size() - index;
@@ -59,7 +65,7 @@ private List<Formation> formations;
                     Container holder = new Container(BoxLayout.x());
                     Container holderDetails = new Container(BoxLayout.y());
                     Label lbnom = new Label(formations.get(i).getLabelle());
-
+                           System.out.println("offfffffffff"+formations.get(i).getLabelle());
                     ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
                      Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateDebut()));
                      Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(formations.get(i).getDateFin()));
@@ -67,7 +73,7 @@ private List<Formation> formations;
                     holder.addAll(image, holderDetails);
                     lbnom.addPointerReleasedListener((evt) -> {
 
-                        FormFormationDetails fd = new FormFormationDetails(e);
+                        FormFormationDetails fd = new FormFormationDetails(e,FormListFormation.this);
                         fd.show();
                     });
                     holder.setLeadComponent(lbnom);
@@ -81,7 +87,7 @@ private List<Formation> formations;
         };
         List.setScrollableY(false);
       // List.setUIID("background");
-        this.add(List);
+        this.add(List);*/
         
        
         
@@ -98,22 +104,26 @@ private List<Formation> formations;
     
     }
     
-    /*public Container addFromationHolder(Formation f) {
+    public Container addFromationHolder(Formation f,FormAcceuilFormation form) {
         Container holder = new Container(BoxLayout.x());
-        Container holderDetails = new Container(BoxLayout.y());
-        
-        ImageViewer image = new ImageViewer(MyApplication.theme.getImage(f.getImageF()).scaled(300, 400));
-        Label lbnom = new Label(f.getLabelle());
-        Label ldated = new Label(f.getDateDebut());
-        Label ldatef = new Label(f.getDateFin());
-        
+                    Container holderDetails = new Container(BoxLayout.y());
+                    Label lbnom = new Label(f.getLabelle());
+                          
+                    ImageViewer image = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
+                     Label ldated = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateDebut()));
+                     Label ldatef = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateFin()));
+                    holderDetails.addAll(lbnom,ldated,ldatef);
+                    holder.addAll(image, holderDetails);
+                    lbnom.addPointerReleasedListener((evt) -> {
 
-        holderDetails.addAll(lbnom,ldated,ldatef);
-        holder.addAll(image, holderDetails);
-        holder.setLeadComponent(image);
+                        FormFormationDetails fd = new FormFormationDetails(f,form);
+                        fd.show();
+                    });
+                    holder.setLeadComponent(lbnom);
 
         return holder;
 
-    }*/
+    }
+   
     
 }

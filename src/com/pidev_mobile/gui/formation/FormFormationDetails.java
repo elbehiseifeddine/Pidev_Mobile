@@ -33,7 +33,7 @@ import com.pidev_mobile.services.FormationService;
  */
 public class FormFormationDetails extends Form {
 
-    public FormFormationDetails(Formation f) {
+    public FormFormationDetails(Formation f,Form previous) {
          setLayout(new BorderLayout());
          setTitle("Formation details");
          this.getToolbar().setUIID("toolbar");
@@ -43,7 +43,7 @@ public class FormFormationDetails extends Form {
 
     // we place the back and done commands in the toolbar, we need to change UIID of the "Done" command
     // so we can color it in Red
-    this.getToolbar().addCommandToLeftBar("", leftArrow, (e) -> Log.p("Back pressed"));
+    this.getToolbar().addCommandToLeftBar("", leftArrow, (e) -> previous.show());
      Container holder = new Container(BoxLayout.y());
      
         Container holderDetails = new Container(BoxLayout.y());
@@ -84,6 +84,8 @@ dlg.show(h /8 * 7, 150, 0, 0);*/
   status.setMessage("Hello world");
   status.setExpires(7000);  // only show the status for 3 seconds, then have it automatically clear
   status.show();*/
+ FormAcceuilFormation p=(FormAcceuilFormation)previous;
+ p.refreshLayout();
  ToastBar.showMessage("participation confirmé", FontImage.MATERIAL_INFO);
                 }
                 else{

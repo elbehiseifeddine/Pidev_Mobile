@@ -74,8 +74,8 @@ fab.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent evt) {
                  new FormationService().SupprimerFormationPart("freelancer",1,f.getId());
-                  FormListMesParticipations p=(FormListMesParticipations)previous;
-                 p.refreshLayoutover();
+                  FormAcceuilFormation p=(FormAcceuilFormation)previous;
+                 p.refreshLayout();
                  
               }
           });
