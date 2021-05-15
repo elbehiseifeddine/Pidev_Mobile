@@ -4,12 +4,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/SignInForm.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/ProfileForm.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/ForgetPassword.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/ProfileFormSociete.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/base/BaseForm.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/UtilisateurService.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/back/superAdmin/ViewAdminProfileForm.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/back/superAdmin/SAAccueil.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/services/AdminService.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/entities/Admin.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/back/superAdmin/AjoutAdminForm.java</file>
+            <file>jar:file:/C:/xampp/htdocs/Pidev_Mobile/lib/CodenameOne_SRC.zip!/com/codename1/ui/Form.java</file>
+            <file>file:/C:/xampp/htdocs/Pidev_Mobile/src/pidev_mobile/MyApplication.java</file>
         </group>
     </open-files>
 </project-private>

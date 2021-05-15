@@ -12,6 +12,7 @@ import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.InfiniteContainer;
@@ -57,6 +58,8 @@ public class SAAccueil extends BaseForm {
         //minna tibda tiktib, ma tfasa5 chay mil fo9ani
         Label justatext = new Label("delete this before working");
 
+        Font largeBoldSystemFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE);
+
         Label textVide1 = new Label("");
         Label textVide2 = new Label("");
         textVide1.setTextPosition(BOTTOM);
@@ -87,47 +90,61 @@ public class SAAccueil extends BaseForm {
         ArrayList<Admin> listAdminReclamation = new ArrayList<>();
         ArrayList<Admin> listAdminEmploi = new ArrayList<>();
         ArrayList<Admin> listAdminEvent = new ArrayList<>();
-
-        for (Admin admin : list) {
-            if (admin.getType().equals("Admin des reclamations")) {
-                listAdminReclamation.add(admin);
+        if (!list.isEmpty()) {
+            for (Admin admin : list) {
+                if (admin.getType().equals("Admin des reclamations")) {
+                    listAdminReclamation.add(admin);
+                }
+                if (admin.getType().equals("Admin des emplois")) {
+                    listAdminEmploi.add(admin);
+                }
+                if (admin.getType().equals("Admin des events")) {
+                    listAdminEvent.add(admin);
+                }
             }
-            if (admin.getType().equals("Admin des emplois")) {
-                listAdminEmploi.add(admin);
+
+            Container contReclamation = new Container();
+            if (listAdminReclamation.isEmpty()) {
+                Label erreur = createForFont(largeBoldSystemFont, "Aucun admin de reclamations");
+                contReclamation.addComponent(erreur);
+            } else {
+                for (Admin admin : listAdminReclamation) {
+
+                    contReclamation.addComponent(addAdminItem(admin, res));
+                }
             }
-            if (admin.getType().equals("Admin des events")) {
-                listAdminEvent.add(admin);
+            Container container1 = BoxLayout.encloseY(contReclamation);
+
+            Container contEvent = new Container();
+             if (listAdminEvent.isEmpty()) {
+                Label erreur = createForFont(largeBoldSystemFont, "Aucun admin des événements");
+                contEvent.addComponent(erreur);
+            } else {
+                for (Admin admin : listAdminEvent) {
+
+                    contEvent.addComponent(addAdminItem(admin, res));
+                }
             }
+            Container container2 = BoxLayout.encloseY(contEvent);
+
+            Container contEmploi = new Container();
+             if (listAdminEmploi.isEmpty()) {
+                Label erreur = createForFont(largeBoldSystemFont, "Aucun admin des emplois");
+                contEmploi.addComponent(erreur);
+            } else {
+                for (Admin admin : listAdminEmploi) {
+
+                    contEmploi.addComponent(addAdminItem(admin, res));
+                }
+            }
+            Container container3 = BoxLayout.encloseY(contEmploi);
+            t.addTab("Reclamations", icon1, container1);
+            t.addTab("Events", icon1, container2);
+            t.addTab("Emplois", icon1, container3);
+            //t.addTab("Tab2", new SpanLabel("Some text directly in the tab"));
+
+            addAll(AddAdmin, t);
         }
-
-        Container contReclamation = new Container();
-        for (Admin admin : listAdminReclamation) {
-
-            contReclamation.addComponent(addAdminItem(admin, res));
-
-        }
-        Container container1 = BoxLayout.encloseY(contReclamation);
-
-        Container contEvent = new Container();
-        for (Admin admin : listAdminEvent) {
-
-            contEvent.addComponent(addAdminItem(admin, res));
-        }
-        Container container2 = BoxLayout.encloseY(contEvent);
-
-        Container contEmploi = new Container();
-        for (Admin admin : listAdminEmploi) {
-
-            contEmploi.addComponent(addAdminItem(admin, res));
-        }
-        Container container3 = BoxLayout.encloseY(contEmploi);
-        t.addTab("Reclamations", icon1, container1);
-        t.addTab("Events", icon1, container2);
-        t.addTab("Emplois", icon1, container3);
-        //t.addTab("Tab2", new SpanLabel("Some text directly in the tab"));
-
-        addAll(AddAdmin, t);
-
         this.getContentPane().addPullToRefresh(new Runnable() {
             @Override
             public void run() {
@@ -181,5 +198,12 @@ public class SAAccueil extends BaseForm {
 
     public void refreshList() {
         list = AdminService.getInstance().AfficherAdmins();
+    }
+
+    private Label createForFont(Font fnt, String s) {
+        Label l = new Label(s);
+        l.getAllStyles().setFgColor(0xFF0000);
+        l.getUnselectedStyle().setFont(fnt);
+        return l;
     }
 }

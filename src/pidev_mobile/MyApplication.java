@@ -15,6 +15,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.Preferences;
 import com.codename1.messaging.Message;
+import pidev_mobile.back.AdminReclamation.ARAccueil;
 
 import pidev_mobile.gui.evenement.Evenement;
 import pidev_mobile.gui.utilisateur.ProfileForm;
@@ -54,8 +55,9 @@ public class MyApplication {
             current.show();
             return;
         }
-        Preferences.set("type","SuperAdmin");
-         new SAAccueil(theme).show();
+        //Preferences.set("type","SuperAdmin");
+        Preferences.set("type","AdminReclamation");
+         new ARAccueil(theme).show();
        //new Evenement(theme).show();
     }
 
