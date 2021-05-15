@@ -5,8 +5,12 @@
  */
 package pidev_mobile.gui.reclamation;
 
+import com.codename1.ui.Button;
+import com.codename1.ui.Component;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import pidev_mobile.base.BaseForm;
@@ -34,5 +38,26 @@ public class Reclamation extends BaseForm{
         //minna tibda tiktib, ma tfasa5 chay mil fo9ani
         Label justatext = new Label("delete this before working");
         add(justatext);
+        
+        TextField type = new TextField("", "entrer type ");
+        type.setUIID("TextFieldBlack");
+        addStringValue("type",type);
+        
+         TextField texte_reclamation = new TextField("", "entrer type ");
+        texte_reclamation.setUIID("TextFieldBlack");
+        addStringValue("texte_reclamation",texte_reclamation);
+        
+        Button btnAjouter = new Button("Ajouter Reclamation");
+        addStringValue("", btnAjouter);
+        
+    }
+
+    private void addStringValue(String s,Component v ) {
+     
+        add(BorderLayout.west(new Label(s,"PaddedLabel"))
+        .add(BorderLayout.CENTER,v));
+        add(createLineSeparator(0xeeeeee));
+    
+           
     }
 }
