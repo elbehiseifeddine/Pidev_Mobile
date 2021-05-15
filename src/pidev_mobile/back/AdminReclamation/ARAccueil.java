@@ -157,16 +157,17 @@ public class ARAccueil extends BaseForm {
         MultiButton button = new MultiButton(reclamation.getNomUser());
         button.setTextLine2(reclamation.getType());
         button.setTextLine3(reclamation.getDateReclamation());
-        return new SwipeableContainer(FlowLayout.encloseCenterMiddle(createButtons(reclamation)),
+        return new SwipeableContainer(FlowLayout.encloseCenterMiddle(createButtons(reclamation,res)),
                 addRecItem(reclamation, res));
     }
-    private Container createButtons(Reclamation reclamation) {
+    private Container createButtons(Reclamation reclamation,Resources res) {
         Container slider = new Container();
         Font fnt = Font.createTrueTypeFont("native:MainLight", "native:MainLight").
                 derive(Display.getInstance().convertToPixels(5, true), Font.STYLE_PLAIN);
         Style s = new Style(0xffff33, 0, fnt, (byte) 0);
         Button Approuver = new Button(FontImage.createMaterial(FontImage.MATERIAL_CHECK, s).toImage());
         Button Supprimer = new Button(FontImage.createMaterial(FontImage.MATERIAL_DELETE, s).toImage());
+        Button Detail = new Button(FontImage.createMaterial(FontImage.MATERIAL_VIEW_LIST, s).toImage());
 
         Approuver.addActionListener((evt) -> {
             AdminReclamationService.getInstance().ActiverReclamation(reclamation.getId(), Integer.parseInt(Preferences.get("id", null)));
@@ -187,7 +188,12 @@ public class ARAccueil extends BaseForm {
             ToastBar.showMessage("Reclamation Supprimer!", FontImage.MATERIAL_INFO);
 
         });
-        slider.addAll(Approuver, Supprimer);
+        
+        Detail.addActionListener((evt) -> {
+           DetailReclamation detail =  new DetailReclamation(res, this, reclamation);
+           detail.show();
+        });
+        slider.addAll(Approuver, Supprimer,Detail);
         return slider;
     }
 
