@@ -65,7 +65,7 @@ public class Statistique extends BaseForm {
         container2.add(new OffreChart().execute());
         
         Container container3 = new Container();
-        container3.add(new OffreChart().execute());
+        container3.add(new DemandeChart().execute());
         
         
         t.addTab("Tab1", container1);
