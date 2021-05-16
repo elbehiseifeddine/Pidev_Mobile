@@ -29,6 +29,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import pidev_mobile.services.UtilisateurService;
 
 /**
  * The user profile form
@@ -56,8 +57,8 @@ public class ProfileForm extends BaseForm {
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
         Image placeholder = Image.createImage(300, 300, 0xbfc9d2); //square image set to 10% of screen width
         EncodedImage encImage = EncodedImage.createFromImage(placeholder, false);
-        
-        URLImage image= URLImage.createToStorage(encImage,"aaaaaaaaa","ftp://user:123456789@192.168.1.52/"+Preferences.get("photo_de_profile", null));
+
+        URLImage image = URLImage.createToStorage(encImage, "aaaaaaaaa", "ftp://user:123456789@192.168.1.52/" + Preferences.get("photo_de_profile", null));
         image.fetch();
         add(LayeredLayout.encloseIn(
                 sl,
@@ -79,21 +80,15 @@ public class ProfileForm extends BaseForm {
         email.setUIID("TextFieldBlack");
         addStringValue("Email", email);
 
+        String oldEmail = email.getText();
+
         TextField adresse = new TextField(Preferences.get("adresse", null));
         adresse.setUIID("TextFieldBlack");
         addStringValue("Adresse", adresse);
 
-        TextField LinkedIn = new TextField(Preferences.get("compte_linkedin", null));
-        LinkedIn.setUIID("TextFieldBlack");
-        addStringValue("LinkedIn", LinkedIn);
-
-        TextField Facebook = new TextField(Preferences.get("compte_facebook", null));
-        Facebook.setUIID("TextFieldBlack");
-        addStringValue("Facebook", Facebook);
-        
-        TextField Twitter = new TextField(Preferences.get("compte_twitter", null));
-        Twitter.setUIID("TextFieldBlack");
-        addStringValue("Twitter", Twitter);
+        TextField langues = new TextField(Preferences.get("langues", null));
+        langues.setUIID("TextFieldBlack");
+        addStringValue("Langues", langues);
 
         TextField Sexe = new TextField(Preferences.get("sexe", null));
         Sexe.setUIID("TextFieldBlack");
@@ -107,7 +102,16 @@ public class ProfileForm extends BaseForm {
         add(Save);
         Save.requestFocus();
         Save.addActionListener(e -> {
-        
+            UtilisateurService.getInstance().Update(nom.getText(), prenom.getText(), oldEmail, email.getText(), adresse.getText(), Sexe.getText(), Compete.getText(), langues.getText());
+            if (UtilisateurService.returnTypeSI.equals("successss")) {
+                Preferences.set("nom", nom.getText());
+                Preferences.set("prenom", prenom.getText());
+                Preferences.set("email", email.getText());
+                Preferences.set("adresse", adresse.getText());
+                Preferences.set("competences", Compete.getText());
+                Preferences.set("langues", langues.getText());
+                Preferences.set("sexe", Sexe.getText());
+            }
         });
 
     }
