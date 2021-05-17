@@ -55,13 +55,14 @@ public class FormAjoutStage extends BaseForm{
        Label lbDesc = new Label("Descriprtion :");
        TextField description = new TextField("", "saisir votre description");
        Label lbD = new Label("Domaine :");
+       //TextField domaine = new TextField("", "domaine");
        ComboBox<String> domaine = new ComboBox<String>(("Informatique"),("Design"),("Jeux vidéo"),("Artisanat"));
       // TextField duree = new TextField("", "duree");
        Label lbDu = new Label("Durée :");
-        ComboBox<String> duree = new ComboBox<String>(("2 semaines"),("1 mois"),("2 mois"),("3 mois"));
-     //  TextField type = new TextField("", "typeStage");
+       ComboBox<String> duree = new ComboBox<String>(("1 mois"),("2 mois"),("3 mois"));
+     // TextField type = new TextField("", "typeStage");
       Label lbT = new Label("Type de stage :");
-        ComboBox<String> type = new ComboBox<String>(("stage d'été"),("stage d'initiation"),("stage PFE"));
+       ComboBox<String> type = new ComboBox<String>(("stage d'été"),("stage d'initiation"),("stage PFE"));
        
        Picker date_creation = new Picker();
         Label lbCr = new Label("Date de création :");
