@@ -118,22 +118,22 @@ public class stageService {
          
      }
         
-          public ArrayList<offreStage> getOffreParUser(int id){
-         
-         String url=BASE_URL+"/showOwnEmploiE?id="+id;
-         req.setUrl(url);
-         req.addResponseListener(new ActionListener<NetworkEvent>() {
-             @Override
-             public void actionPerformed(NetworkEvent evt) {
-              //   offre1=parseResponse(new String(req.getResponseData()));
-                 req.removeResponseListener(this);
-             }
-         });
-         NetworkManager.getInstance().addToQueueAndWait(req);
-         
-         return offre1;
-         
-     } 
+//          public ArrayList<offreStage> getOffreParUser(int id){
+//         
+//         String url=BASE_URL+"/showOwnEmploiE?id="+id;
+//         req.setUrl(url);
+//         req.addResponseListener(new ActionListener<NetworkEvent>() {
+//             @Override
+//             public void actionPerformed(NetworkEvent evt) {
+//              //   offre1=parseResponse(new String(req.getResponseData()));
+//                 req.removeResponseListener(this);
+//             }
+//         });
+//         NetworkManager.getInstance().addToQueueAndWait(req);
+//         
+//         return offre1;
+//         
+//     } 
   public boolean SupprimerSTAGE(offreStage e){
         ResultOK=false;
         String url=BASE_URL+"/stage/deleteS?id="+e.getId();
