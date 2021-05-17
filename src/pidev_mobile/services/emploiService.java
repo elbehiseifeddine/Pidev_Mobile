@@ -84,8 +84,8 @@ public class emploiService {
                 F.setSalaire(Float.parseFloat(obj.get("salaire").toString()));
                
                 F.setDevise(obj.get("devise").toString());
-               F.setDateCreation(new SimpleDateFormat("yyyy-mm-dd ").parse(obj.get("dateC").toString()));
-               F.setDateExpiration(new SimpleDateFormat("yyyy-mm-dd ").parse(obj.get("dateE").toString()));
+               F.setDateCreation(new SimpleDateFormat("yyyy-mm-dd").parse(obj.get("dateC").toString()));
+               F.setDateExpiration(new SimpleDateFormat("yyyy-mm-dd").parse(obj.get("dateE").toString()));
                 //System.out.println(obj.get("dated").toString()+"    hadha date"); 
                
                 

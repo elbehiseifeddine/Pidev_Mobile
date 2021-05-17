@@ -20,7 +20,9 @@ import pidev_mobile.gui.evenement.Evenement;
 import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
 import pidev_mobile.gui.offreEmploi.FormAjoutEmploi;
 import pidev_mobile.gui.offreEmploi.FormListEmplois;
+import pidev_mobile.gui.offreStage.ConsulterStageFreelancer;
 import pidev_mobile.gui.offreStage.FormAjoutStage;
+import pidev_mobile.gui.offreStage.FormListStage;
 import pidev_mobile.gui.utilisateur.ProfileForm;
 import pidev_mobile.gui.utilisateur.WalkthruForm;
 
@@ -58,7 +60,7 @@ public class MyApplication {
             return;
         }
         Preferences.set("type","AdminReclamation");
-        new FormAjoutStage(theme).show();
+        new ConsulterStageFreelancer(theme).show();
        //new Evenement(theme).show();
     }
 

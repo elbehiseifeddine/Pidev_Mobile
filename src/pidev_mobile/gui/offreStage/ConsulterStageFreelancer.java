@@ -61,19 +61,21 @@ public class ConsulterStageFreelancer extends BaseForm{
                     
                     
 
-                     Label ldateC = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateCreation()));
-                     Label ldateE = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateExpiration()));
-                    Button demande=new Button("Demande stage");
+                     Label ldateC = new Label(new SimpleDateFormat("yyyy-mm-dd").format(f.getDateCreation()));
+                     Label ldateE = new Label(new SimpleDateFormat("yyyy-mm-dd").format(f.getDateExpiration()));
+                    Button demande=new Button("Postuler");
+                    Label line = new Label("---------------------------------------------------------------");
+                    demande.getStyle().setBgColor(0xcccccc);
                     demande.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent evt) {
-                  System.out.println("good");
-                  stageService.getInstance().SupprimerSTAGE(f);
+//                  System.out.println("good");
+//                  stageService.getInstance().SupprimerSTAGE(f);
                 //  refresh();
                  
               }
           });
-                     holder.addAll(lbnom,lbcompetences,lbdesc,lbdomaine,lbduree,lbtype,ldateC,ldateE,demande);
+                     holder.addAll(lbnom,lbcompetences,lbdesc,lbdomaine,lbduree,lbtype,ldateC,ldateE,demande,line);
                    
                     lbnom.addPointerReleasedListener((evt) -> {
 
