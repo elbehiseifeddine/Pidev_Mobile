@@ -5,17 +5,26 @@
  */
 package pidev_mobile.gui.offreStage;
 
+import com.codename1.l10n.SimpleDateFormat;
+import com.codename1.ui.Button;
+import com.codename1.ui.Container;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
+import java.util.List;
 import pidev_mobile.base.BaseForm;
+import pidev_mobile.entities.offreStage;
+import pidev_mobile.services.stageService;
 
 /**
  *
  * @author seifeddine
  */
 public class ConsulterStageFreelancer extends BaseForm{
+     List<offreStage> Stages;
     
     public ConsulterStageFreelancer(Resources res) {
         super("Newsfeed", BoxLayout.y());
@@ -32,7 +41,46 @@ public class ConsulterStageFreelancer extends BaseForm{
         addAll(lab1,lab2,lab3);
         
         //minna tibda tiktib, ma tfasa5 chay mil fo9ani
-        Label justatext = new Label("delete this before working");
-        add(justatext);
+       Stages=stageService.getInstance().getAll(9);
+        
+        for(int i=0;i<Stages.size();i++){
+            this.add(this.addpartholder(Stages.get(i)));
+
     }
+    }
+    
+      public Container addpartholder(offreStage f){
+          Container holder = new Container(BoxLayout.y());
+                    Container holderDetails = new Container(BoxLayout.y());
+                    Label lbnom = new Label(f.getNomProjet());
+                    Label lbcompetences = new Label(f.getCompetence());
+                    Label lbdesc = new Label(f.getDescription());
+                    Label lbdomaine = new Label(f.getDomaine());
+                    Label lbduree = new Label(f.getDuree());
+                    Label lbtype = new Label(f.getTypeStage());
+                    
+                    
+
+                     Label ldateC = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateCreation()));
+                     Label ldateE = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateExpiration()));
+                    Button demande=new Button("Demande stage");
+                    demande.addActionListener(new ActionListener() {
+              @Override
+              public void actionPerformed(ActionEvent evt) {
+                  System.out.println("good");
+                  stageService.getInstance().SupprimerSTAGE(f);
+                //  refresh();
+                 
+              }
+          });
+                     holder.addAll(lbnom,lbcompetences,lbdesc,lbdomaine,lbduree,lbtype,ldateC,ldateE,demande);
+                   
+                    lbnom.addPointerReleasedListener((evt) -> {
+
+                         
+                    });
+                    holder.setLeadComponent(lbnom);
+                    return holder;
+     }
+
 }
