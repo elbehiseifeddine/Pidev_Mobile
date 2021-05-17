@@ -17,6 +17,8 @@ import com.codename1.io.Preferences;
 import com.codename1.messaging.Message;
 
 import pidev_mobile.gui.evenement.Evenement;
+import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
+import pidev_mobile.gui.offreEmploi.FormListEmplois;
 import pidev_mobile.gui.utilisateur.ProfileForm;
 import pidev_mobile.gui.utilisateur.WalkthruForm;
 
@@ -54,7 +56,7 @@ public class MyApplication {
             return;
         }
         Preferences.set("type","AdminReclamation");
-        new WalkthruForm(theme).show();
+        new ConsulterEmploiFreelancer(theme).show();
        //new Evenement(theme).show();
     }
 

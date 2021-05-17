@@ -55,8 +55,8 @@ public class FormListEmplois extends Form {
                     
                     
 
-                     Label ldateC = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateCreation()));
-                     Label ldateE = new Label(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(f.getDateExpiration()));
+                     Label ldateC = new Label(new SimpleDateFormat("yyyy-mm-dd").format(f.getDateCreation()));
+                     Label ldateE = new Label(new SimpleDateFormat("yyyy-mm-dd").format(f.getDateExpiration()));
                     Button supprimer=new Button("suprimer");
                     supprimer.addActionListener(new ActionListener() {
               @Override

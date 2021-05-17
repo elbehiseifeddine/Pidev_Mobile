@@ -85,7 +85,7 @@ public class emploiService {
                
                 F.setDevise(obj.get("devise").toString());
                F.setDateCreation(new SimpleDateFormat("yyyy-mm-dd ").parse(obj.get("dateC").toString()));
-                F.setDateExpiration(new SimpleDateFormat("yyyy-mm-dd ").parse(obj.get("dateE").toString()));
+               F.setDateExpiration(new SimpleDateFormat("yyyy-mm-dd ").parse(obj.get("dateE").toString()));
                 //System.out.println(obj.get("dated").toString()+"    hadha date"); 
                
                 
@@ -95,7 +95,8 @@ public class emploiService {
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
      
-        } catch (ParseException ex) {
+     }
+catch (ParseException ex) {
             System.out.println(ex.getMessage());
                   
         }
