@@ -47,7 +47,7 @@ private Resources res;
    
 
          //formations = new ArrayList<>();
-        formations = FormationService.getInstance().getAll("freelancer",1);
+        formations = FormationService.getInstance().getAll("freelancer",22);
         for(int i=0;i<formations.size();i++){
             this.add(addFromationHolder(formations.get(i),form));
         }

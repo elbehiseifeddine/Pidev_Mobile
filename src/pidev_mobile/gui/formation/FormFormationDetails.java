@@ -77,7 +77,7 @@ public class FormFormationDetails extends BaseForm{
         BtnParticiper.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent evt) {
-                if( new FormationService().Participaer(1,f.getId(),"freelancer")){
+                if( new FormationService().Participaer(22,f.getId(),"freelancer")){
          /*        Dialog dlg = new Dialog();
 dlg.setLayout(new BorderLayout());
 // span label accepts the text and the UIID for the dialog body

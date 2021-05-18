@@ -45,7 +45,7 @@ private Resources res;
          //setUIID("background");
          
          
-         formations = FormationService.getInstance().getParticipation("freelancer",1);
+         formations = FormationService.getInstance().getParticipation("freelancer",22);
          for(int i=0;i<formations.size();i++){
              this.add(addpartholder(formations.get(i), form));
          }
@@ -112,7 +112,7 @@ private Resources res;
          
        
         //this.setUIID("background");
-        formations = FormationService.getInstance().getParticipation("freelancer",1);
+        formations = FormationService.getInstance().getParticipation("freelancer",22);
          for(int i=0;i<formations.size();i++){
              this.add(addpartholder(formations.get(i), form));
          }

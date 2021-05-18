@@ -45,7 +45,7 @@ private Resources res;
        
 
          //Listformations = new ArrayList<>();
-         Listformations = FormationService.getInstance().getFParUser("freelancer",1);
+         Listformations = FormationService.getInstance().getFParUser("freelancer",22);
          for(int i=0;i<Listformations.size();i++){
              this.add(addMaFormationholder(Listformations.get(i),form));
          }
@@ -119,7 +119,7 @@ fab.bindFabToContainer(this.getContentPane());
          
        
         //this.setUIID("background");
-        Listformations = FormationService.getInstance().getFParUser("freelancer",1);
+        Listformations = FormationService.getInstance().getFParUser("freelancer",22);
          for(int i=0;i<Listformations.size();i++){
              this.add(addMaFormationholder(Listformations.get(i), form));
          }
