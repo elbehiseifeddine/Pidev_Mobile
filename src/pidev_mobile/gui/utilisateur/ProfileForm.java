@@ -13,7 +13,7 @@ import pidev_mobile.base.BaseForm;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.io.Preferences;
 import com.codename1.ui.Button;
-import com.codename1.ui.CheckBox;
+
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
@@ -29,6 +29,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+
 import pidev_mobile.services.UtilisateurService;
 
 /**
@@ -58,7 +59,7 @@ public class ProfileForm extends BaseForm {
         Image placeholder = Image.createImage(300, 300, 0xbfc9d2); //square image set to 10% of screen width
         EncodedImage encImage = EncodedImage.createFromImage(placeholder, false);
 
-        URLImage image = URLImage.createToStorage(encImage, "aaaaaaaaa", "ftp://user:123456789@192.168.1.52/" + Preferences.get("photo_de_profile", null));
+        URLImage image = URLImage.createToStorage(encImage, "aaaaaaaaa", "file:///C:/Users/seifeddine/Desktop/PiDev/public/picture/" + Preferences.get("photo_de_profile", null));
         image.fetch();
         add(LayeredLayout.encloseIn(
                 sl,
@@ -113,7 +114,7 @@ public class ProfileForm extends BaseForm {
                 Preferences.set("sexe", Sexe.getText());
             }
         });
-
+       
     }
 
     private void addStringValue(String s, Component v) {
