@@ -13,13 +13,11 @@ import com.codename1.components.ScaleImageLabel;
 import com.codename1.io.Preferences;
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
-import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
@@ -40,8 +38,10 @@ import pidev_mobile.back.superAdmin.Statistique;
 import pidev_mobile.gui.demandeEmploi.ConsulterDemandeEmploi;
 import pidev_mobile.gui.demandeEmploi.ConsulterDemandeSociete;
 import pidev_mobile.gui.demandeStage.ConsulterDemandeStage;
-import pidev_mobile.gui.evenement.Evenement;
-import pidev_mobile.gui.formation.Formation;
+import pidev_mobile.gui.evenement.FormAcceuilEvent;
+
+import pidev_mobile.gui.formation.FormAcceuilFormation;
+
 import pidev_mobile.gui.offreEmploi.ConsulterEmploi;
 import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
 import pidev_mobile.gui.offreStage.ConsulterStage;
@@ -96,22 +96,18 @@ public class BaseForm extends Form {
         Label nom = new Label("El Behi" + " Seifeddine");
         Label email = new Label("seifeddineelbehi@gmail.com");
         Label space = new Label(" ");
-        Image placeholder = Image.createImage(300, 300, 0xbfc9d2); //square image set to 10% of screen width
-        EncodedImage encImage = EncodedImage.createFromImage(placeholder, false);
-        URLImage image = URLImage.createToStorage(encImage, "aaaaaaaaa", "file:///C:/Users/seifeddine/Desktop/PiDev/public/picture/" + Preferences.get("photo_de_profile", null));
-        image.fetch();
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 sl,
                 FlowLayout.encloseCenterBottom(
-                        new Label(image.scaled(300, 300), "PictureWhiteBackgrond")
-        )));
+                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
+        ));
         tb.addComponentToSideMenu(BorderLayout.south(FlowLayout.encloseCenter(nom)));
         tb.addComponentToSideMenu(BorderLayout.south(FlowLayout.encloseCenter(email)));
         tb.addComponentToSideMenu(space);
         if (Preferences.get("type", null).equals("Freelancer")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new Publication(res).show());
-            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new Evenement(res).show());
-            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new Formation(res).show());
+            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new FormAcceuilEvent(res).show());
+            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new FormAcceuilFormation(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Emplois", FontImage.MATERIAL_WORK, e -> new ConsulterEmploiFreelancer(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStageFreelancer(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Demande d'emploi", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeEmploi(res).show());
@@ -123,8 +119,8 @@ public class BaseForm extends Form {
             });
         } else if (Preferences.get("type", null).equals("Societe")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new Publication(res).show());
-            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new Evenement(res).show());
-            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new Formation(res).show());
+            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new FormAcceuilEvent(res).show());
+            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new FormAcceuilFormation(res).show());
             tb.addMaterialCommandToSideMenu(" Créer Offres Emplois", FontImage.MATERIAL_WORK, e -> new ConsulterEmploi(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Offres Emplois", FontImage.MATERIAL_VISIBILITY, e -> new ConsulterEmploi(res).show());
             tb.addMaterialCommandToSideMenu(" Créer Offres Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStage(res).show());
