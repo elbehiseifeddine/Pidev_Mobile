@@ -137,7 +137,7 @@ public class AdminReclamationService {
     
     public ArrayList<Reclamation> AfficherReclamationsApprouve() {
         ArrayList<Reclamation> list = new ArrayList<>();
-        String url = Statics.BASE_URL + "/AllReclamationJson?idAdmin="+Preferences.get("id", null);
+        String url = Statics.BASE_URL + "/AllReclamationJson?idAdmin="+(int) Math.round(Preferences.get("id", 1.1));
         req.setUrl(url);
         req.setPost(false);
         JSONParser json = new JSONParser();

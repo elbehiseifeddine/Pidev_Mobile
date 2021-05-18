@@ -86,7 +86,7 @@ public class UserChart extends AbstractDemoChart {
             r.setFillPoints(true);
         }
         setChartSettings(renderer, "Satestique des utilisteurs par mois", "Month", "Nombre d'utilisateur", 0.5, 12.5, 0, 40,
-                ColorUtil.LTGRAY, ColorUtil.LTGRAY);
+        ColorUtil.LTGRAY, ColorUtil.LTGRAY);
 
         renderer.setXLabels(12);
         renderer.setYLabels(10);

@@ -22,8 +22,8 @@
     <image name="profile-pic.jpg" type="multi"  />
     <image name="ProfileBackground.jpg"  />
     <image name="python.png"  />
-    <image name="share.png"  />
     <image name="Reclamation.png"  />
+    <image name="share.png"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
     <image name="smily.png" type="multi"  />

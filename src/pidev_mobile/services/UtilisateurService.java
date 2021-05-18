@@ -125,25 +125,25 @@ public class UtilisateurService {
                     } else if (user.get("type") != null) {
 
                         if (user.get("type").equals("Admin des events")) {
-                            Preferences.set("type", "Freelancer");
+                            Preferences.set("type", "Admin des events");
                             Preferences.set("id", (Double) user.get("id"));
                             Preferences.set("nom", (String) user.get("nom"));
                             Preferences.set("prenom", (String) user.get("prenom"));
-                            Preferences.set("login", (String) user.get("login"));
+                            Preferences.set("email", (String) user.get("login"));
                         
                         } else if (user.get("type").equals("Admin des emplois")) {
                             Preferences.set("type", "Admin des emplois");
                             Preferences.set("id", (Double) user.get("id"));
                             Preferences.set("nom", (String) user.get("nom"));
                             Preferences.set("prenom", (String) user.get("prenom"));
-                            Preferences.set("login", (String) user.get("login"));
+                            Preferences.set("email", (String) user.get("login"));
                         
                         } else if (user.get("type").equals("Admin des reclamations")) {
                             Preferences.set("type", "Admin des reclamations");
                             Preferences.set("id", (Double) user.get("id"));
                             Preferences.set("nom", (String) user.get("nom"));
                             Preferences.set("prenom", (String) user.get("prenom"));
-                            Preferences.set("login", (String) user.get("login"));
+                            Preferences.set("email", (String) user.get("login"));
                         }
 
                     } else if (user.get("login") != null && user.get("type") == null) {
@@ -151,7 +151,7 @@ public class UtilisateurService {
                         Preferences.set("id", (Double) user.get("id"));
                         Preferences.set("nom", (String) user.get("nom"));
                         Preferences.set("prenom", (String) user.get("prenom"));
-                        Preferences.set("login", (String) user.get("login"));
+                        Preferences.set("email", (String) user.get("login"));
                     }
 
                 } catch (IOException ex) {

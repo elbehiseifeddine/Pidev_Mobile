@@ -134,7 +134,7 @@ public class ReclamationApprouver extends BaseForm{
     }
 
     public void refreshList() {
-        list = AdminReclamationService.getInstance().AfficherReclamations();
+        list = AdminReclamationService.getInstance().AfficherReclamationsApprouve();
     }
 
     private Label createForFont(Font fnt, String s) {

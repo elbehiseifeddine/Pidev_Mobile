@@ -62,7 +62,7 @@ public class OffreChart extends AbstractDemoChart{
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
         renderer.setOrientation(Orientation.HORIZONTAL);
         setChartSettings(renderer, "Nombre des offre par mois", "Month", "Nombre d'Offre ", 0.5,
-                12.5, 0, 24000, ColorUtil.GRAY, ColorUtil.LTGRAY);
+                12.5, 0, 24000, ColorUtil.BLUE, ColorUtil.MAGENTA);
         renderer.setXLabels(1);
         renderer.setYLabels(10);
         renderer.addXTextLabel(1, "Jan");

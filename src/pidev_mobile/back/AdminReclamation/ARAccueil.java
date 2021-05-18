@@ -13,34 +13,26 @@ import com.codename1.ui.Button;
 import static com.codename1.ui.CN.getCurrentForm;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.BOTTOM;
-import com.codename1.ui.ComponentGroup;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.Slider;
 import com.codename1.ui.SwipeableContainer;
 import com.codename1.ui.Tabs;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.util.ArrayList;
-import pidev_mobile.back.superAdmin.AjoutAdminForm;
-import pidev_mobile.back.superAdmin.ViewAdminProfileForm;
 import pidev_mobile.base.BaseForm;
-import pidev_mobile.entities.Admin;
 import pidev_mobile.entities.Reclamation;
 import pidev_mobile.services.AdminReclamationService;
-import pidev_mobile.services.AdminService;
 
 /**
  *
@@ -153,7 +145,7 @@ public class ARAccueil extends BaseForm {
         return l;
     }
 
-    public SwipeableContainer createRankWidget(Reclamation reclamation, Resources res) {
+    public final SwipeableContainer createRankWidget(Reclamation reclamation, Resources res) {
         MultiButton button = new MultiButton(reclamation.getNomUser());
         button.setTextLine2(reclamation.getType());
         button.setTextLine3(reclamation.getDateReclamation());
@@ -170,7 +162,7 @@ public class ARAccueil extends BaseForm {
         Button Detail = new Button(FontImage.createMaterial(FontImage.MATERIAL_VIEW_LIST, s).toImage());
 
         Approuver.addActionListener((evt) -> {
-            AdminReclamationService.getInstance().ActiverReclamation(reclamation.getId(), Integer.parseInt(Preferences.get("id", null)));
+            AdminReclamationService.getInstance().ActiverReclamation(reclamation.getId(),(int) Math.round(Preferences.get("id", 1.1)));
 
             ToastBar.showMessage("Reclamation traité", FontImage.MATERIAL_CHECK);
             refreshList();
