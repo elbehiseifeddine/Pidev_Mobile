@@ -48,7 +48,7 @@ public class PublicationService {
     //AjoutPublication
     public void ajoutPublication(Publications publications){
         
-        String url =Statics.BASE_URL+"/AddPublication?description="+publications.getDescription()+"&image="+publications.getImage();
+        String url =Statics.BASE_URL+"/AddPublication?description="+publications.getDescription()+"&image="+publications.getImage()+"&util="+publications.getFreelancer_id();
         
         req.setUrl(url);
         req.addResponseListener((e) -> {

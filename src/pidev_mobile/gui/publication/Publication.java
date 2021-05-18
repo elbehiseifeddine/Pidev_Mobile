@@ -90,7 +90,7 @@ public class Publication extends BaseForm{
             try {
                 if(description.getText() =="" || image.getText()==""){
                     Dialog.show("verifier les données!","","Annuler","OK");
-                    new Acceuil(res).show();
+                    new Publication(res).show();
                 }
                 
                 else {
@@ -102,7 +102,7 @@ public class Publication extends BaseForm{
                         String.valueOf(description.getText()).toString(),
                         String.valueOf(image.getText()).toString(),
                         format.format(new Date()),
-                        3
+                        1
                     );
                     
                     System.out.println("publication == "+p);
@@ -111,15 +111,35 @@ public class Publication extends BaseForm{
                     
                     iDialog.dispose();
                     
-                    new Acceuil(res).show();
+                    new Publication(res).show();
                     
-                    refreshTheme();
+                    //refreshTheme();
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
             }
         
         });
+        
+        
+        ArrayList<Publications>list = PublicationService.getInstance().afficherPublication();
+        
+        for(Publications pub : list) {
+            
+            String urlImage = "file:///C:/wamp64/www/PiDev/public/picture/"+pub.getImage() ;
+            
+            Image placeHolder = Image.createImage(1000,1000);
+            EncodedImage enc = EncodedImage.createFromImage(placeHolder,false);
+            URLImage urlimg = URLImage.createToStorage(enc, urlImage, urlImage, URLImage.RESIZE_SCALE);
+            
+            urlimg.fetch();
+            addButton(urlimg,pub,res);
+            
+            ScaleImageLabel imagePub = new ScaleImageLabel(urlimg);
+            Container containerImg = new Container();
+            imagePub.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+            
+        }
         
         
         
@@ -133,6 +153,75 @@ public class Publication extends BaseForm{
     }
     
     
+    private void addButton(Image img, Publications pub, Resources res) {
+        
+        int height = Display.getInstance().convertToPixels(11.5f);
+        int width = Display.getInstance().convertToPixels(14f);
+
+        Button image = new Button(img.fill(width, height));
+        image.setUIID("Label");
+        
+        Container cnt = BorderLayout.west(image) ;
+        
+        TextArea taNom = new TextArea(pub.getNomUtil()+ " "+pub.getPrenomUtil());
+        TextArea ta1 = new TextArea(pub.getDescription());
+        TextArea ta2 = new TextArea(pub.getDate_publication());
+        ta1.setUIID("newsTopLine");
+        ta1.setEditable(false);
+        ta2.setUIID("Label");
+        ta2.setEditable(false);
+        taNom.setUIID("newsTopLine");
+        taNom.setEditable(false);
+        
+            
+        
+        
+        
+        Label limg = new Label();
+        limg.setIcon(img);
+        
+        
+        //button supprimer
+        Label lSupprimer = new Label(" ");
+        lSupprimer.setUIID("NewsTopLine");
+        Style supprimerStyle = new Style(lSupprimer.getUnselectedStyle());
+        supprimerStyle.setFgColor(0xf21f1f);
+        
+        FontImage supprimerImage = FontImage.createMaterial(FontImage.MATERIAL_DELETE, supprimerStyle);
+        lSupprimer.setIcon(supprimerImage);
+        lSupprimer.setTextPosition(RIGHT);
+        
+        //click delete icon
+        lSupprimer.addPointerPressedListener(l -> {
+           
+            Dialog dig = new Dialog("Suppression");
+            
+            if(dig.show("Suppression","vous voulez supprimer cette publication?","Annuler","Oui")){
+                dig.dispose();
+            }
+            else {
+                dig.dispose();
+                
+                if(PublicationService.getInstance().deletePublication(pub.getId())) {
+                    new Publication(res).show();
+                    
+                }
+            }
+            
+        });
+        
+        
+        cnt.add(BorderLayout.WEST, BoxLayout.encloseY(
+                BoxLayout.encloseX(taNom,lSupprimer),
+                BoxLayout.encloseX(ta1),
+                BoxLayout.encloseX(limg),
+                BoxLayout.encloseX(ta2))
+        
+        );
+        
+        add(cnt);
+        add(createLineSeparator(0xffffff));
+    }
     
     
 }
