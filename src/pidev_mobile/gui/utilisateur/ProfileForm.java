@@ -72,7 +72,6 @@ public class ProfileForm extends BaseForm {
         TextField nom = new TextField(Preferences.get("nom", null));
         nom.setUIID("TextFieldBlack");
         addStringValue("Nom", nom);
-
         TextField prenom = new TextField(Preferences.get("prenom", null));
         prenom.setUIID("TextFieldBlack");
         addStringValue("Prenom", prenom);

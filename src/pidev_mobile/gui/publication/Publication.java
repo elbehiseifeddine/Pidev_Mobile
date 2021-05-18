@@ -8,6 +8,7 @@ package pidev_mobile.gui.publication;
 import com.codename1.capture.Capture;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
@@ -82,7 +83,6 @@ public class Publication extends BaseForm{
         
         Button btnAjouterPub = new Button("Publier");
         addStringValue("",btnAjouterPub);
-        
        addStringValue("",btCapture);
         
         btnAjouterPub.addActionListener((e) -> {
@@ -102,7 +102,7 @@ public class Publication extends BaseForm{
                         String.valueOf(description.getText()).toString(),
                         String.valueOf(image.getText()).toString(),
                         format.format(new Date()),
-                        1
+                        (int) Math.round(Preferences.get("id", 1.1))
                     );
                     
                     System.out.println("publication == "+p);
@@ -126,7 +126,7 @@ public class Publication extends BaseForm{
         
         for(Publications pub : list) {
             
-            String urlImage = "file:///C:/wamp64/www/PiDev/public/picture/"+pub.getImage() ;
+            String urlImage = "file:///C:/Users/seifeddine/Desktop/PiDev/public/picture/"+pub.getImage() ;
             
             Image placeHolder = Image.createImage(1000,1000);
             EncodedImage enc = EncodedImage.createFromImage(placeHolder,false);
