@@ -17,11 +17,13 @@
     <image name="news-tab-down.png" type="multi"  />
     <image name="on-off-off.png" type="multi"  />
     <image name="on-off-on.png" type="multi"  />
+    <image name="PetitLogoR.png"  />
     <image name="profile-background.jpg"  />
     <image name="profile-pic.jpg" type="multi"  />
     <image name="ProfileBackground.jpg"  />
     <image name="python.png"  />
     <image name="share.png"  />
+    <image name="Reclamation.png"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
     <image name="smily.png" type="multi"  />
