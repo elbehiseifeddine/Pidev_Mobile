@@ -53,6 +53,7 @@ import pidev_mobile.gui.offreStage.FormAjoutStage;
 import pidev_mobile.gui.offreStage.FormListStage;
 import pidev_mobile.gui.offreStage.OffreStage;
 import pidev_mobile.gui.publication.Publication;
+import pidev_mobile.gui.reclamation.AfficherReclamation;
 import pidev_mobile.gui.utilisateur.NewsfeedForm;
 import pidev_mobile.gui.utilisateur.ProfileForm;
 import pidev_mobile.gui.utilisateur.ProfileFormSociete;
@@ -100,7 +101,7 @@ public class BaseForm extends Form {
         ScaleImageLabel sl = new ScaleImageLabel(img);
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        Label nom = new Label(Preferences.get("prenom", "") +" "+ Preferences.get("nom", null));
+        Label nom = new Label(Preferences.get("prenom", "") + " " + Preferences.get("nom", null));
         Label email = new Label(Preferences.get("email", null));
         Label space = new Label(" ");
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
@@ -119,6 +120,7 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Consulter Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStageFreelancer(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Demande d'emploi", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeEmploi(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Demande d'Stage", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeStage(res).show());
+            tb.addMaterialCommandToSideMenu(" Reclamation", FontImage.MATERIAL_WORK, e -> new AfficherReclamation(res).show());
             tb.addMaterialCommandToSideMenu(" Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE, e -> new ProfileForm(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
@@ -133,6 +135,7 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Créer Offres Stage", FontImage.MATERIAL_SCHOOL, e -> new FormAjoutStage(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Offres Stages", FontImage.MATERIAL_VISIBILITY, e -> new FormListStage(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter les Demandes", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeSociete(res).show());
+            tb.addMaterialCommandToSideMenu(" Reclamation", FontImage.MATERIAL_WORK, e -> new AfficherReclamation(res).show());
             tb.addMaterialCommandToSideMenu(" Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE, e -> new ProfileFormSociete(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
