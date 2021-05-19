@@ -166,49 +166,15 @@ public class UtilisateurService {
         NetworkManager.getInstance().addToQueueAndWait(req);
     }
 
-    public void Update(String Email, String pwd) {
-        String url = Statics.BASE_URL + "/SignInJson/new?email=" + Email + "&pwd=" + pwd;
+     public void Update(String nom,String prenom,String oldEmail, String Email, String adress, String sexe, String competence, String langues ) {
+        String url = Statics.BASE_URL + "/UpdateProfileJson/new?nom=" + nom + "&type=Freelancer&email=" + Email + "&id=" + Preferences.get("id", null)+"&prenom=" + prenom+ "&adresse=" + adress+ "&sexe=" + sexe+ "&competences=" + competence+ "&langues=" + langues;
         req.setUrl(url);
         req.addResponseListener((e) -> {
-            JSONParser j = new JSONParser();
-            String json = new String(req.getResponseData()) + "";
             byte[] data = (byte[]) e.getMetaData();
             String responceData = new String(data);
-            if (responceData.equals("\"CompteDesactiver\"")) {
-                returnTypeSI = "CompteDesactiver";
-            } else if (responceData.equals("\"Mot de pass est Incorrect\"")) {
-                returnTypeSI = "Mot de pass est Incorrect";
-            } else if (responceData.equals("\"Email exist pas\"")) {
-                returnTypeSI = "Email exist pas";
-            } else {
-                returnTypeSI = "success";
-                try {
-                    Map<String, Object> user = j.parseJSON(new CharArrayReader(json.toCharArray()));
-                    if (user.get("compte_facebook") != null) {
-                        Preferences.set("type", "Freelancer");
-                        Preferences.set("id", (Double) user.get("id"));
-                        Preferences.set("nom", (String) user.get("nom"));
-                        Preferences.set("prenom", (String) user.get("prenom"));
-                        Preferences.set("email", (String) user.get("email"));
-                        Preferences.set("adresse", (String) user.get("adresse"));
-                        Preferences.set("competences", (String) user.get("competences"));
-                        Preferences.set("compte_facebook", (String) user.get("compte_facebook"));
-                        Preferences.set("compte_linkedin", (String) user.get("compte_linkedin"));
-                        Preferences.set("compte_twitter", (String) user.get("compte_twitter"));
-                        Preferences.set("langues", (String) user.get("langues"));
-                        Preferences.set("sexe", (String) user.get("sexe"));
-                        Preferences.set("photo_de_profile", (String) user.get("photo_de_profile"));
-                    } else if (user.get("status_juridique") != null) {
-                        Preferences.set("type", "Societe");
-                    } else if (user.get("compte_facebook") != null) {
-                        Preferences.set("type", "Freelancer");
-                    }
+            
+                returnTypeSI = "successss";
 
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                }
-
-            }
             System.out.println("data ======>" + responceData);
 
         });

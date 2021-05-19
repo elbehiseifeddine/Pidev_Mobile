@@ -10,6 +10,7 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.ParseException;
 import com.codename1.ui.events.ActionListener;
 import java.io.IOException;
@@ -45,7 +46,10 @@ public class ReclamationService {
     public boolean addRec(Reclamation r) {
         //création de l'URL
   String url = Statics.BASE_URL + "/reclamation/new?type=" + r.getType()
-                + "&texteReclamation=" + r.getTextReclamation();
+                + "&texteReclamation=" + r.getTextReclamation()
+          + "&email=" + Preferences.get("email", null)
+          + "&nom=" + Preferences.get("nom", null)
+          ;
         req.setUrl(url);// Insertion de l'URL de notre demande de connexion
         req.addResponseListener(new ActionListener<NetworkEvent>() {
 

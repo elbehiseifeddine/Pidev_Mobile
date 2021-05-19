@@ -36,6 +36,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Preferences;
 import com.codename1.ui.CN;
 import com.codename1.ui.Image;
 import com.codename1.ui.util.ImageIO;
@@ -229,7 +230,7 @@ Label limg=new Label("");
                     Formation F =new Formation(Lebelle.getText(), description.getText(), domaine.getText(), Lieu.getText(), datedeb, datefin, Float.parseFloat(montant.getText()), true, lat, lng,imageF );
                     //datedeb=new Date( new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
                    
-                    if(new FormationService().addFormation(F,"freelancer",1)){
+                    if(new FormationService().addFormation(F,"freelancer",(int) Math.round(Preferences.get("id", 1.1)))){
                         ip.dispose();
                            FormAcceuilFormation p=(FormAcceuilFormation)f;
                            p.refreshLayout();

@@ -8,6 +8,7 @@ package pidev_mobile.gui.evenement;
 import com.codename1.ext.filechooser.FileChooser;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
@@ -215,7 +216,7 @@ String imageE="";
                     EventLoisir E=new EventLoisir(Lebelle.getText(), description.getText(), domaine.getText(), Lieu.getText(), datedeb, datefin, Integer.parseInt(montant.getText()), true, 1, 1, imageE);
                     //datedeb=new Date( new SimpleDateFormat("yyyy-mm-dd").format(dateDD.getDate())+" "+new SimpleDateFormat("HH:mm:ss").format(dateDT.getText()+":00"));
                    
-                    if(new EventService().addEvent(E,"freelancer",1)){
+                    if(new EventService().addEvent(E,"freelancer",(int) Math.round(Preferences.get("id", 1.1)))){
                            FormAcceuilEvent p=(FormAcceuilEvent)f;
                            p.refreshLayout();
                         

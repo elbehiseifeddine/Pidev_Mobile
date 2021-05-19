@@ -5,10 +5,79 @@
  */
 package pidev_mobile.gui.reclamation;
 
+import com.codename1.ui.Button;
+import static com.codename1.ui.Component.CENTER;
+import com.codename1.ui.Container;
+import com.codename1.ui.Form;
+import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.GridLayout;
+import com.codename1.ui.util.Resources;
+import pidev_mobile.base.BaseForm;
+import pidev_mobile.services.ReclamationService;
+import pidev_mobile.entities.Reclamation;
 /**
  *
  * @author Ayari Ghaith
  */
-public class AjouterReclamation {
-    
+public class AjouterReclamation extends BaseForm{
+    ReclamationService cs = ReclamationService.instance.getInstance();
+    Form current;
+
+    public AjouterReclamation(Resources res,String typerec) {
+
+       super("Newsfeed", BoxLayout.y());
+        Toolbar tb = new Toolbar(true);
+        setToolbar(tb);
+        getTitleArea().setUIID("blackContainer");
+        setTitle("Reclamation");
+        getContentPane().setScrollVisible(false);
+
+        super.addSideMenu(res);
+        Label lab1 = new Label("  ");
+        Label lab2 = new Label("  ");
+        Label lab3 = new Label("  ");
+        addAll(lab1,lab2,lab3);
+
+        Label FormTitle = new Label("Modifier Reclamation");
+        FormTitle.getAllStyles().setAlignment(CENTER);
+
+        TextField type = new TextField(typerec, "Type", 15, TextField.ANY);
+        type.setUIID("SignInForm");
+
+        TextField description = new TextField("", "Texte Reclamation", 15, TextField.ANY);
+        description.setUIID("SignInForm");
+
+        type.setSingleLineTextArea(true);
+        description.setSingleLineTextArea(true);
+
+        Button ModifierRec = new Button("Enregistrer");
+        ModifierRec.addActionListener(e -> {
+            Reclamation r= new Reclamation();
+            r.setType(type.getText());
+            r.setTextReclamation(description.getText());
+
+            if (ReclamationService.getInstance().addRec(r)) {
+                new AfficherReclamation(res).show();
+            }
+
+        });
+
+        Button btnAnnuler = new Button("Annuler");
+        btnAnnuler.addActionListener(l -> {
+            new AfficherReclamation(res).show();
+        });
+
+        Container labels = new Container(BoxLayout.yCenter()).addAll(type, description, ModifierRec, btnAnnuler);
+        labels.setUIID("SignInForm");
+        Container by = new Container(new GridLayout(2, 1));
+        by.addAll(
+                labels
+        );
+        add(FormTitle);
+        add(by);
+
+    }
 }

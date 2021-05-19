@@ -11,6 +11,7 @@ package pidev_mobile.gui.utilisateur;
  */
 import pidev_mobile.base.BaseForm;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.components.ToastBar;
 import com.codename1.io.Preferences;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
@@ -29,6 +30,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import pidev_mobile.services.UtilisateurService;
 
 /**
  * The user profile form
@@ -67,10 +69,9 @@ public class ProfileForm extends BaseForm {
                 )
         ));
 
-        TextField nom = new TextField(Preferences.get("nom", null));
+         TextField nom = new TextField(Preferences.get("nom", null));
         nom.setUIID("TextFieldBlack");
         addStringValue("Nom", nom);
-
         TextField prenom = new TextField(Preferences.get("prenom", null));
         prenom.setUIID("TextFieldBlack");
         addStringValue("Prenom", prenom);
@@ -79,21 +80,15 @@ public class ProfileForm extends BaseForm {
         email.setUIID("TextFieldBlack");
         addStringValue("Email", email);
 
+        String oldEmail = email.getText();
+
         TextField adresse = new TextField(Preferences.get("adresse", null));
         adresse.setUIID("TextFieldBlack");
         addStringValue("Adresse", adresse);
 
-        TextField LinkedIn = new TextField(Preferences.get("compte_linkedin", null));
-        LinkedIn.setUIID("TextFieldBlack");
-        addStringValue("LinkedIn", LinkedIn);
-
-        TextField Facebook = new TextField(Preferences.get("compte_facebook", null));
-        Facebook.setUIID("TextFieldBlack");
-        addStringValue("Facebook", Facebook);
-        
-        TextField Twitter = new TextField(Preferences.get("compte_twitter", null));
-        Twitter.setUIID("TextFieldBlack");
-        addStringValue("Twitter", Twitter);
+        TextField langues = new TextField(Preferences.get("langues", null));
+        langues.setUIID("TextFieldBlack");
+        addStringValue("Langues", langues);
 
         TextField Sexe = new TextField(Preferences.get("sexe", null));
         Sexe.setUIID("TextFieldBlack");
@@ -106,8 +101,18 @@ public class ProfileForm extends BaseForm {
         Button Save = new Button("Save");
         add(Save);
         Save.requestFocus();
-        Save.addActionListener(e -> {
-        
+         Save.addActionListener(e -> {
+            UtilisateurService.getInstance().Update(nom.getText(), prenom.getText(), oldEmail, email.getText(), adresse.getText(), Sexe.getText(), Compete.getText(), langues.getText());
+            if (UtilisateurService.returnTypeSI.equals("successss")) {
+                Preferences.set("nom", nom.getText());
+                Preferences.set("prenom", prenom.getText());
+                Preferences.set("email", email.getText());
+                Preferences.set("adresse", adresse.getText());
+                Preferences.set("competences", Compete.getText());
+                Preferences.set("langues", langues.getText());
+                Preferences.set("sexe", Sexe.getText());
+                ToastBar.showErrorMessage("Votre modification est éffectuer avec success");
+            }
         });
 
     }
