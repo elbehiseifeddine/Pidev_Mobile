@@ -5,6 +5,8 @@
  */
 package pidev_mobile.entities;
 
+import java.util.Date;
+
 
 
 /**
@@ -12,7 +14,7 @@ package pidev_mobile.entities;
  * @author ely
  */
 public class DemandeStage {
-  /*  private int id;
+    private int id;
       private int freelancer_id;
     private int offre_stage_id;
     private String description;
@@ -136,8 +138,8 @@ public class DemandeStage {
         this.etat = etat;
     }
 
-    public DemandeStage(int id, int freelancer_id, int offre_stage_id, String description, String lettre, Date date_creation, String domaine, String type, int duree, String etude,String nom_societe) {
-        this.id = id;
+    public DemandeStage( int freelancer_id, int offre_stage_id, String description, String lettre, String domaine, String type, int duree, String etude) {
+      
         this.freelancer_id = freelancer_id;
         this.offre_stage_id = offre_stage_id;
         this.description = description;
@@ -154,10 +156,7 @@ public class DemandeStage {
    
        
        
-         public Date convertUtilToSql(java.util.Date uDate) {
-       java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
-*/
+     
+
       
 }

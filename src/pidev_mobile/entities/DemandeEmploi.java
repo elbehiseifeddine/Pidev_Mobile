@@ -130,6 +130,18 @@ public class DemandeEmploi {
         this.etat = etat;
     }
 
+    public DemandeEmploi(int freelancer_id, int offre_emploi_id, String description, String lettre, String domaine, String diplome, double salaire) {
+        this.freelancer_id = freelancer_id;
+        this.offre_emploi_id = offre_emploi_id;
+        this.description = description;
+        this.lettre = lettre;
+        
+        
+        this.domaine = domaine;
+        this.diplome = diplome;
+        this.salaire = salaire;
+    }
+
     public DemandeEmploi( int id,int freelancer_id, String description, String lettre, Date date_creation, String domaine, String diplome, double salaire,int offre_id) {
         this.id= id;
         this.freelancer_id = freelancer_id;
@@ -147,10 +159,7 @@ public class DemandeEmploi {
    
    
 
-    public Date convertUtilToSql(java.util.Date uDate) {
-       java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
+   
 
   
 
