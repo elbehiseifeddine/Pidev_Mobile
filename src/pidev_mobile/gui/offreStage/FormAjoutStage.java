@@ -55,14 +55,14 @@ public class FormAjoutStage extends BaseForm{
        Label lbDesc = new Label("Descriprtion :");
        TextField description = new TextField("", "saisir votre description");
        Label lbD = new Label("Domaine :");
-       //TextField domaine = new TextField("", "domaine");
-       ComboBox<String> domaine = new ComboBox<String>(("Informatique"),("Design"),("Jeux vidéo"),("Artisanat"));
-      // TextField duree = new TextField("", "duree");
+       TextField domaine = new TextField("", "domaine");
+      // ComboBox<String> domaine = new ComboBox<String>(("Informatique"),("Design"),("Jeux vidéo"),("Artisanat"));
+       TextField duree = new TextField("", "duree");
        Label lbDu = new Label("Durée :");
-       ComboBox<String> duree = new ComboBox<String>(("1 mois"),("2 mois"),("3 mois"));
-     // TextField type = new TextField("", "typeStage");
+      // ComboBox<String> duree = new ComboBox<String>(("1 mois"),("2 mois"),("3 mois"));
+      TextField type = new TextField("", "typeStage");
       Label lbT = new Label("Type de stage :");
-       ComboBox<String> type = new ComboBox<String>(("stage d'été"),("stage d'initiation"),("stage PFE"));
+      // ComboBox<String> type = new ComboBox<String>(("stage d'été"),("stage d'initiation"),("stage PFE"));
        
        Picker date_creation = new Picker();
         Label lbCr = new Label("Date de création :");
@@ -77,7 +77,7 @@ public class FormAjoutStage extends BaseForm{
            @Override
            public void actionPerformed(ActionEvent evt) {
                try {
-                   offreStage of=new offreStage(nom.getText(), competences.getText(), description.getText(), domaine.getSelectedItem().toString(), duree.getSelectedItem().toString(), type.getSelectedItem().toString(),new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_creation.getDate())), new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_expiration.getDate())), 1);
+                   offreStage of=new offreStage(nom.getText(), competences.getText(), description.getText(), domaine.getText(), duree.getText(), type.getText(),new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_creation.getDate())), new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_expiration.getDate())), 1);
                 new stageService().addStage(of, "Societe", 1);
                  Dialog.show("Succés", " Félicitation votre offre ajouté", "OK", null);
                } catch (ParseException ex) {

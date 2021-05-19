@@ -44,8 +44,14 @@ import pidev_mobile.gui.formation.FormAcceuilFormation;
 
 import pidev_mobile.gui.offreEmploi.ConsulterEmploi;
 import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
+import pidev_mobile.gui.offreEmploi.FormAjoutEmploi;
+import pidev_mobile.gui.offreEmploi.FormListEmplois;
+import pidev_mobile.gui.offreEmploi.OffreEmploi;
 import pidev_mobile.gui.offreStage.ConsulterStage;
 import pidev_mobile.gui.offreStage.ConsulterStageFreelancer;
+import pidev_mobile.gui.offreStage.FormAjoutStage;
+import pidev_mobile.gui.offreStage.FormListStage;
+import pidev_mobile.gui.offreStage.OffreStage;
 import pidev_mobile.gui.publication.Publication;
 import pidev_mobile.gui.utilisateur.NewsfeedForm;
 import pidev_mobile.gui.utilisateur.ProfileForm;
@@ -122,10 +128,10 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new Publication(res).show());
             tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new FormAcceuilEvent(res).show());
             tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new FormAcceuilFormation(res).show());
-            tb.addMaterialCommandToSideMenu(" Créer Offres Emplois", FontImage.MATERIAL_WORK, e -> new ConsulterEmploi(res).show());
-            tb.addMaterialCommandToSideMenu(" Consulter Offres Emplois", FontImage.MATERIAL_VISIBILITY, e -> new ConsulterEmploi(res).show());
-            tb.addMaterialCommandToSideMenu(" Créer Offres Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStage(res).show());
-            tb.addMaterialCommandToSideMenu(" Consulter Offres Stages", FontImage.MATERIAL_VISIBILITY, e -> new ConsulterStage(res).show());
+            tb.addMaterialCommandToSideMenu(" Créer Offres Emplois", FontImage.MATERIAL_WORK, e -> new FormAjoutEmploi(res).show());
+            tb.addMaterialCommandToSideMenu(" Consulter Offres Emplois", FontImage.MATERIAL_VISIBILITY, e -> new FormListEmplois(res).show());
+            tb.addMaterialCommandToSideMenu(" Créer Offres Stage", FontImage.MATERIAL_SCHOOL, e -> new FormAjoutStage(res).show());
+            tb.addMaterialCommandToSideMenu(" Consulter Offres Stages", FontImage.MATERIAL_VISIBILITY, e -> new FormListStage(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter les Demandes", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeSociete(res).show());
             tb.addMaterialCommandToSideMenu(" Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE, e -> new ProfileFormSociete(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {

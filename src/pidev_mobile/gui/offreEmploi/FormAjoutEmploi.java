@@ -75,7 +75,7 @@ public class FormAjoutEmploi extends BaseForm{
                   
                    offreEmploi of=new offreEmploi(nom.getText(), competences.getText(), description.getText(),domaine.getSelectedItem().toString(), Float.parseFloat(salaire.getText()), devise.getSelectedItem().toString(),new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_creation.getDate())), new SimpleDateFormat("yyyy-mm-dd").parse(new SimpleDateFormat("yyyy-mm-dd").format(date_expiration.getDate())), 1);
                 new emploiService().addEmploi(of, "Societe", 1);
-                Dialog.show("Succés", " Félicitation votre offre ajouté", "OK", null);
+              Dialog.show("Succés", " Félicitation votre offre ajouté", "OK", null);
                } catch (ParseException ex) {
                }
               

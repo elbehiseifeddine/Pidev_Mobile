@@ -74,8 +74,8 @@ public class MyApplication {
          new SignInForm(theme).show();
          //new ARAccueil(theme).show();
          //new SAAccueil(theme).show();
-        Preferences.set("type","AdminReclamation");
-        new ConsulterStageFreelancer(theme).show();
+       // Preferences.set("type","AdminReclamation");
+        //new FormListStage(theme).show();
        //new Evenement(theme).show();
       // new FormMapFormation(current).show();
       //new FormAcceuilEvent(theme).show();

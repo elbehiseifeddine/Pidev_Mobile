@@ -10,10 +10,14 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.Resources;
 import java.util.List;
+import javax.mail.Quota.Resource;
+import pidev_mobile.base.BaseForm;
 import pidev_mobile.entities.offreStage;
 import pidev_mobile.services.stageService;
 
@@ -21,10 +25,22 @@ import pidev_mobile.services.stageService;
  *
  * @author Ghassen Riahi
  */
-public class FormListStage  extends Form{
+public class FormListStage  extends BaseForm{
     List<offreStage> Stages;
 
-    public FormListStage() {
+    public FormListStage(Resources res) {
+          super("Newsfeed", BoxLayout.y());
+        Toolbar tb = new Toolbar(true);
+        setToolbar(tb);
+        getTitleArea().setUIID("blackContainer");
+       // setTitle("Consulter tous les Stages");
+        getContentPane().setScrollVisible(false);
+
+        super.addSideMenu(res);
+        Label lab1 = new Label("  ");
+        Label lab2 = new Label("  ");
+        Label lab3 = new Label("  ");
+        addAll(lab1,lab2,lab3);
          setTitle("Liste des stages");
         setLayout(BoxLayout.y());
         Stages=stageService.getInstance().getAll(9);

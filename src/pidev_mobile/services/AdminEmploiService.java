@@ -134,10 +134,10 @@ public class AdminEmploiService {
 
                     float salaire = Float.parseFloat(obj.get("salaire").toString());
 
-                   a.setCompetence(competance);
+                   a.setCompetences(competance);
                    a.setDateCreation(dateCreation);
                    a.setDescription(description);
-                   a.setNomProjet(nomprojet);
+                   a.setNom(nomprojet);
                    a.setEtat((int)etat);
                    a.setDomaine(domaine);
                    a.setDevise(devise);

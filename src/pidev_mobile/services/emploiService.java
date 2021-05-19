@@ -10,6 +10,7 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 
@@ -49,8 +50,8 @@ public class emploiService {
        public boolean addEmploi(offreEmploi F,String type,int idu){
          ResultOK=false;
          String url=BASE_URL+"/emploi/addE/?nom="+F.getNom()+"&comptetences="+F.getCompetences()+"&description="+F.getDescription()+"&domaine="+F.getDomaine()+"&salaire="+F.getSalaire()+
-                 "&devise="+F.getDevise()+"&date_creation="+F.getDateCreation()+"&date_expiration="+F.getDateExpiration()+"&etat="+1;
-         //+"&ids="+idu;
+                 "&devise="+F.getDevise()+"&date_creation="+F.getDateCreation()+"&ids="+(int) Math.round(Preferences.get("id", 1.1))+"&date_expiration="+F.getDateExpiration()+"&etat="+1;
+         
                 
           req.setUrl(url);
             req.setPost(false);
