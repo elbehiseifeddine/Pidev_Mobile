@@ -7,11 +7,14 @@ package pidev_mobile.entities;
 
 import java.util.Date;
 
+
+
 /**
  *
- * @author ahmed
+ * @author Ghassen Riahi
  */
 public class offreStage {
+
     private int id;
     private String nomProjet;
     private String competence;
@@ -21,15 +24,15 @@ public class offreStage {
     private String typeStage;
     private Date dateCreation;
     private Date dateExpiration;
-private int etat;
-private int idSociete;
+    private int etat;
+    private int idSociete;
 
     public offreStage() {
     }
+    
+    
 
-
-
-    public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration) {
+    public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation,Date dateExpiration) {
         this.nomProjet = nomProjet;
         this.competence = competence;
         this.description = description;
@@ -38,8 +41,7 @@ private int idSociete;
         this.typeStage = typeStage;
         this.dateCreation = dateCreation;
         this.dateExpiration = dateExpiration;
-        
-        
+
     }
 
     public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration, int etat) {
@@ -76,7 +78,7 @@ private int idSociete;
         this.dateExpiration = dateExpiration;
     }
 
-    public offreStage(int id, String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration, int etat, int idSociete) {
+    public offreStage(int id, String nomProjet, String competence, String description, String domaine, String duree, String typeStage,Date dateCreation, Date dateExpiration, int etat, int idSociete) {
         this.id = id;
         this.nomProjet = nomProjet;
         this.competence = competence;
@@ -102,9 +104,6 @@ private int idSociete;
         this.etat = etat;
         this.idSociete = idSociete;
     }
-
-    
-    
 
     public int getId() {
         return id;
@@ -195,4 +194,5 @@ private int idSociete;
     }
     
     
+
 }

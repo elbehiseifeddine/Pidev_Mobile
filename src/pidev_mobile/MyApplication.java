@@ -24,6 +24,13 @@ import pidev_mobile.gui.formation.FormAcceuilFormation;
 import pidev_mobile.gui.formation.FormAjoutFormation;
 import pidev_mobile.gui.formation.FormMapFormation;
 
+import pidev_mobile.gui.evenement.Evenement;
+import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
+import pidev_mobile.gui.offreEmploi.FormAjoutEmploi;
+import pidev_mobile.gui.offreEmploi.FormListEmplois;
+import pidev_mobile.gui.offreStage.ConsulterStageFreelancer;
+import pidev_mobile.gui.offreStage.FormAjoutStage;
+import pidev_mobile.gui.offreStage.FormListStage;
 import pidev_mobile.gui.utilisateur.ProfileForm;
 import pidev_mobile.gui.utilisateur.WalkthruForm;
 import pidev_mobile.back.superAdmin.SAAccueil;
@@ -67,6 +74,8 @@ public class MyApplication {
          new SignInForm(theme).show();
          //new ARAccueil(theme).show();
          //new SAAccueil(theme).show();
+        Preferences.set("type","AdminReclamation");
+        new ConsulterStageFreelancer(theme).show();
        //new Evenement(theme).show();
       // new FormMapFormation(current).show();
       //new FormAcceuilEvent(theme).show();

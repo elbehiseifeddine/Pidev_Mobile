@@ -11,4 +11,7 @@ and open the template in the editor.
     Save{
         background-color: black;
     }
+    Button{
+         background-color: green;
+    }
 }
