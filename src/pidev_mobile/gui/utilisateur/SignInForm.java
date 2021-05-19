@@ -24,6 +24,10 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import pidev_mobile.back.AdminEmploi.AEMAccueil;
+import pidev_mobile.back.AdminEvent.AEAccueil;
+import pidev_mobile.back.AdminReclamation.ARAccueil;
+import pidev_mobile.back.superAdmin.SAAccueil;
 import pidev_mobile.services.UtilisateurService;
 import pidev_mobile.gui.utilisateur.ProfileFormSociete;
 import static pidev_mobile.services.UtilisateurService.returnTypeSI;
@@ -91,6 +95,20 @@ public class SignInForm extends BaseForm {
                     new ProfileForm(res).show();
                 } else if (Preferences.get("type", null).equals("Societe")) {
                     new ProfileFormSociete(res).show();
+                }
+                
+                if (Preferences.get("type", null).equals("Admin des reclamations")) {
+                    new ARAccueil(res).show();
+                }
+                
+                if (Preferences.get("type", null).equals("Admin des events")) {
+                    new AEAccueil(res).show();
+                }
+                if (Preferences.get("type", null).equals("Admin des emplois")) {
+                    new AEMAccueil(res).show();
+                }
+                if (Preferences.get("type", null).equals("SuperAdmin")) {
+                    new SAAccueil(res).show();
                 }
 
             }

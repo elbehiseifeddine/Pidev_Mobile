@@ -38,8 +38,10 @@ import pidev_mobile.back.superAdmin.Statistique;
 import pidev_mobile.gui.demandeEmploi.ConsulterDemandeEmploi;
 import pidev_mobile.gui.demandeEmploi.ConsulterDemandeSociete;
 import pidev_mobile.gui.demandeStage.ConsulterDemandeStage;
-import pidev_mobile.gui.evenement.Evenement;
-import pidev_mobile.gui.formation.Formation;
+import pidev_mobile.gui.evenement.FormAcceuilEvent;
+
+import pidev_mobile.gui.formation.FormAcceuilFormation;
+
 import pidev_mobile.gui.offreEmploi.ConsulterEmploi;
 import pidev_mobile.gui.offreEmploi.ConsulterEmploiFreelancer;
 import pidev_mobile.gui.offreStage.ConsulterStage;
@@ -48,6 +50,7 @@ import pidev_mobile.gui.publication.Publication;
 import pidev_mobile.gui.utilisateur.NewsfeedForm;
 import pidev_mobile.gui.utilisateur.ProfileForm;
 import pidev_mobile.gui.utilisateur.ProfileFormSociete;
+import pidev_mobile.gui.utilisateur.SignInForm;
 import pidev_mobile.gui.utilisateur.WalkthruForm;
 
 /**
@@ -91,7 +94,9 @@ public class BaseForm extends Form {
         ScaleImageLabel sl = new ScaleImageLabel(img);
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        Label nom = new Label("El Behi" + " Seifeddine");
+//        Label nom = new Label(Preferences.get("prenom", "") +" "+ Preferences.get("nom", null));
+//        Label email = new Label(Preferences.get("email", null));
+            Label nom = new Label("El Behi" + " Seifeddine");
         Label email = new Label("seifeddineelbehi@gmail.com");
         Label space = new Label(" ");
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
@@ -104,8 +109,8 @@ public class BaseForm extends Form {
         tb.addComponentToSideMenu(space);
         if (Preferences.get("type", null).equals("Freelancer")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new Publication(res).show());
-            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new Evenement(res).show());
-            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new Formation(res).show());
+            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new FormAcceuilEvent(res).show());
+            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new FormAcceuilFormation(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Emplois", FontImage.MATERIAL_WORK, e -> new ConsulterEmploiFreelancer(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStageFreelancer(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Demande d'emploi", FontImage.MATERIAL_UPDATE, e -> new ConsulterDemandeEmploi(res).show());
@@ -113,12 +118,12 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE, e -> new ProfileForm(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
         } else if (Preferences.get("type", null).equals("Societe")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new Publication(res).show());
-            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new Evenement(res).show());
-            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new Formation(res).show());
+            tb.addMaterialCommandToSideMenu(" Evenements", FontImage.MATERIAL_BOOK_ONLINE, e -> new FormAcceuilEvent(res).show());
+            tb.addMaterialCommandToSideMenu(" Formations", FontImage.MATERIAL_CAST_FOR_EDUCATION, e -> new FormAcceuilFormation(res).show());
             tb.addMaterialCommandToSideMenu(" Créer Offres Emplois", FontImage.MATERIAL_WORK, e -> new ConsulterEmploi(res).show());
             tb.addMaterialCommandToSideMenu(" Consulter Offres Emplois", FontImage.MATERIAL_VISIBILITY, e -> new ConsulterEmploi(res).show());
             tb.addMaterialCommandToSideMenu(" Créer Offres Stage", FontImage.MATERIAL_SCHOOL, e -> new ConsulterStage(res).show());
@@ -138,31 +143,31 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Liste Societe", FontImage.MATERIAL_HOME, e -> new ListeSociete(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
-        } else if (Preferences.get("type", null).equals("AdminEvent")) {
+        } else if (Preferences.get("type", null).equals("Admin des events")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new AEAccueil(res).show());
             tb.addMaterialCommandToSideMenu(" Eventment/Formation Approuver", FontImage.MATERIAL_HOME, e -> new EventFormApprouver(res).show());
             tb.addMaterialCommandToSideMenu(" Statistique", FontImage.MATERIAL_HOME, e -> new Statistique(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
-        } else if (Preferences.get("type", null).equals("AdminEmploi")) {
+        } else if (Preferences.get("type", null).equals("Admin des emplois")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new AEMAccueil(res).show());
             tb.addMaterialCommandToSideMenu(" Emploi/Stage Approuver", FontImage.MATERIAL_HOME, e -> new EmploiStageApprouver(res).show());
             tb.addMaterialCommandToSideMenu(" Statistique", FontImage.MATERIAL_HOME, e -> new Statistique(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
-        } else if (Preferences.get("type", null).equals("AdminReclamation")) {
+        } else if (Preferences.get("type", null).equals("Admin des reclamations")) {
             tb.addMaterialCommandToSideMenu(" Accueil", FontImage.MATERIAL_HOME, e -> new ARAccueil(res).show());
             tb.addMaterialCommandToSideMenu(" Reclamation Approuver", FontImage.MATERIAL_HOME, e -> new ReclamationApprouver(res).show());
             tb.addMaterialCommandToSideMenu(" Statistique", FontImage.MATERIAL_HOME, e -> new Statistique(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
         }
 

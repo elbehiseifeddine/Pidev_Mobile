@@ -2,9 +2,11 @@
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
     <image name="activation-background.jpg"  />
+    <image name="background.png"  />
     <image name="confirmation-background.jpg"  />
     <image name="dog.jpg"  />
     <image name="facebook-logo.png" type="multi"  />
+    <image name="logo.png"  />
     <image name="LogoR.png"  />
     <image name="news-item-1.jpg"  />
     <image name="news-item-2.jpg"  />
@@ -15,9 +17,13 @@
     <image name="news-tab-down.png" type="multi"  />
     <image name="on-off-off.png" type="multi"  />
     <image name="on-off-on.png" type="multi"  />
+    <image name="PetitLogoR.png"  />
     <image name="profile-background.jpg"  />
     <image name="profile-pic.jpg" type="multi"  />
     <image name="ProfileBackground.jpg"  />
+    <image name="python.png"  />
+    <image name="Reclamation.png"  />
+    <image name="share.png"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
     <image name="smily.png" type="multi"  />
@@ -71,6 +77,12 @@
         <val key="Button.sel#margin" value="0.0,0.0,2.0,2.0" />
         <val key="Button.sel#padUnit" value="2,2,2,2" />
         <val key="Button.sel#padding" value="2.0,2.0,2.0,2.0" />
+        <val key="CameraButton.align" value="4" />
+        <val key="CameraButton.bgImage" value="logo.png" />
+        <val key="CameraButton.bgType" value="33" />
+        <val key="CameraButton.padUnit" value="2,2,2,2" />
+        <val key="CameraButton.padding" value="3.0,1.0,1.0,1.0" />
+        <val key="CameraButton.transparency" value="0" />
         <val key="CenterLabel.align" value="4" />
         <val key="CenterLabel.derive" value="Label" />
         <val key="CenterLink.align" value="4" />
@@ -111,6 +123,7 @@
         <gradient key="Form.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="Form.bgType" value="0" />
         <val key="Form.transparency" value="255" />
+        <val key="ImageCenter.align" value="4" />
         <val key="ImageOverlay.bgColor" value="14134b" />
         <val key="ImageOverlay.transparency" value="60" />
         <val key="Label.fgColor" value="0" />
@@ -178,6 +191,13 @@
         <val key="PictureWhiteBackgrond.padUnit" value="2,2,2,2" />
         <val key="PictureWhiteBackgrond.padding" value="1.0,1.0,1.0,1.0" />
         <val key="PictureWhiteBackgrond.transparency" value="255" />
+        <border key="RedCommand.border" type="empty" />
+        <val key="RedCommand.fgColor" value="f73267" />
+        <font key="RedCommand.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="3.0" />
+        <val key="RedCommand.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="RedCommand.padUnit" value="2,2,2,2" />
+        <val key="RedCommand.padding" value="1.0,1.0,1.0,1.0" />
+        <val key="RedCommand.transparency" value="0" />
         <val key="SelectBar.align" value="4" />
         <val key="SelectBar.bgColor" value="ff2d55" />
         <val key="SelectBar.bgImage" value="news-tab-down.png" />
@@ -260,6 +280,14 @@
         <val key="SkipButton.sel#padding" value="1.0,1.0,1.0,1.0" />
         <val key="SkipButton.sel#transparency" value="0" />
         <val key="SkipButton.transparency" value="0" />
+        <val key="SouthButton.align" value="4" />
+        <val key="SouthButton.bgColor" value="f73267" />
+        <val key="SouthButton.fgColor" value="ffffff" />
+        <val key="SouthButton.marUnit" value="2,2,2,2" />
+        <val key="SouthButton.margin" value="1.0,1.0,1.0,1.0" />
+        <val key="SouthButton.padUnit" value="2,2,2,2" />
+        <val key="SouthButton.padding" value="2.0,2.0,1.0,1.0" />
+        <val key="SouthButton.transparency" value="255" />
         <val key="StatusBarSideMenu.margin" value="0.0,0.0,0.0,0.0" />
         <val key="StatusBarSideMenu.padding" value="0.0,0.0,0.0,0.0" />
         <border key="TextField.border" type="round" roundBorderColor="16777215" opacity="255" strokeColor="0" strokeOpacity="255" strokeThickness="0.0" strokeMM="false" shadowSpread="10" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" shadowMM="false" rectangle="true" />
@@ -307,6 +335,10 @@
         <val key="Title.fgColor" value="ffffff" />
         <font key="Title.font" type="ttf" face="0" style="1" size="16" name="native:MainBold" family="native:MainBold" sizeSettings="3" actualSize="3.5" />
         <val key="Title.textDecoration" value="0" />
+        <border key="TitleArea.border" type="empty" />
+        <val key="TitleArea.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="TitleArea.padding" value="0.0,0.0,0.0,0.0" />
+        <val key="TitleArea.transparency" value="0" />
         <val key="TitleCommand.fgColor" value="ffffff" />
         <font key="TitleCommand.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="3.0" />
         <val key="TitleCommand.padUnit" value="2,2,2,2" />
@@ -322,10 +354,42 @@
         <val key="TitleCommand.sel#padding" value="2.0,2.0,2.0,2.0" />
         <val key="TitleCommand.sel#transparency" value="0" />
         <val key="TitleCommand.transparency" value="0" />
+        <val key="TitleContainer.bgImage" value="background.png" />
+        <val key="TitleContainer.bgType" value="33" />
+        <val key="TitleContainer.padUnit" value="2,2,2,2" />
+        <val key="TitleContainer.padding" value="0.0,2.0,3.0,3.0" />
+        <border key="Titre.border" type="empty" />
+        <val key="Titre.fgColor" value="ffffff" />
+        <font key="Titre.font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
+        <val key="Titre.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="Titre.padUnit" value="2,2,2,2" />
+        <val key="Titre.padding" value="1.0,1.0,1.0,1.0" />
+        <val key="Titre.transparency" value="0" />
+        <border key="TitreArea.border" type="empty" />
+        <val key="TitreArea.fgColor" value="ffffff" />
+        <font key="TitreArea.font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
+        <val key="TitreArea.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="TitreArea.padUnit" value="2,2,2,2" />
+        <val key="TitreArea.padding" value="1.0,1.0,1.0,1.0" />
+        <val key="TitreArea.transparency" value="0" />
         <gradient key="Toolbar.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="Toolbar.bgType" value="0" />
         <border key="Toolbar.border" type="empty" />
         <val key="Toolbar.transparency" value="0" />
+        <val key="TxtField.bgColor" value="ffffff" />
+        <border key="TxtField.border" type="empty" />
+        <font key="TxtField.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
+        <val key="TxtField.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="TxtField.padding" value="2.0,2.0,2.0,2.0" />
+        <val key="TxtField.transparency" value="255" />
+        <val key="TxtHint.bgColor" value="ffffff" />
+        <border key="TxtHint.border" type="empty" />
+        <val key="TxtHint.fgColor" value="4d606f" />
+        <font key="TxtHint.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
+        <val key="TxtHint.margin" value="0.0,0.0,0.0,0.0" />
+        <val key="TxtHint.padUnit" value="2,2,2,2" />
+        <val key="TxtHint.padding" value="2.0,2.0,2.0,2.0" />
+        <val key="TxtHint.transparency" value="255" />
         <val key="Welcome.bgImage" value="welcome-background.jpg" />
         <val key="Welcome.bgType" value="33" />
         <val key="Welcome.margin" value="0.0,0.0,0.0,0.0" />
@@ -352,7 +416,6 @@
         <border key="blackContainer.border" type="empty" />
         <val key="blackContainer.fgColor" value="0" />
         <val key="blackContainer.transparency" value="250" />
-        <val key="transparency" value="0" />
     </theme>
     <image name="timeline-background.jpg"  />
     <image name="Toolbar.jpg"  />
