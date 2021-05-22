@@ -59,7 +59,7 @@ public class ProfileForm extends BaseForm {
         Image placeholder = Image.createImage(300, 300, 0xbfc9d2); //square image set to 10% of screen width
         EncodedImage encImage = EncodedImage.createFromImage(placeholder, false);
         
-        URLImage image= URLImage.createToStorage(encImage,"aaaaaaaaa","ftp://user:123456789@192.168.1.52/"+Preferences.get("photo_de_profile", null));
+        URLImage image= URLImage.createToStorage(encImage,Preferences.get("photo_de_profile", null),"file:///C:/Users/seifeddine/Desktop/PiDev/public/picture/"+Preferences.get("photo_de_profile", null));
         image.fetch();
         add(LayeredLayout.encloseIn(
                 sl,

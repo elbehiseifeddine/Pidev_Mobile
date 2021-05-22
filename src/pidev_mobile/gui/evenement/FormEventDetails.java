@@ -7,6 +7,7 @@ package pidev_mobile.gui.evenement;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ToastBar;
+import com.codename1.io.Preferences;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -71,7 +72,7 @@ public class FormEventDetails extends BaseForm {
         BtnParticiper.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent evt) {
-                if( new EventService().Participaer(1,ev.getId(),"freelancer")){
+                if( new EventService().Participaer((int) Math.round(Preferences.get("id", 1.1)),ev.getId(),"freelancer")){
          /*        Dialog dlg = new Dialog();
 dlg.setLayout(new BorderLayout());
 // span label accepts the text and the UIID for the dialog body

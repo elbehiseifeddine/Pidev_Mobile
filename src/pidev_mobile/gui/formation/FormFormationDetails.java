@@ -9,6 +9,7 @@ import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -77,7 +78,7 @@ public class FormFormationDetails extends BaseForm{
         BtnParticiper.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent evt) {
-                if( new FormationService().Participaer(22,f.getId(),"freelancer")){
+                if( new FormationService().Participaer((int) Math.round(Preferences.get("id", 1.1)),f.getId(),"freelancer")){
          /*        Dialog dlg = new Dialog();
 dlg.setLayout(new BorderLayout());
 // span label accepts the text and the UIID for the dialog body

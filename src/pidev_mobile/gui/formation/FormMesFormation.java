@@ -9,6 +9,7 @@ import com.codename1.components.FloatingActionButton;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ToastBar;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -45,7 +46,7 @@ private Resources res;
        
 
          //Listformations = new ArrayList<>();
-         Listformations = FormationService.getInstance().getFParUser("freelancer",22);
+         Listformations = FormationService.getInstance().getFParUser("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<Listformations.size();i++){
              this.add(addMaFormationholder(Listformations.get(i),form));
          }
@@ -119,7 +120,7 @@ fab.bindFabToContainer(this.getContentPane());
          
        
         //this.setUIID("background");
-        Listformations = FormationService.getInstance().getFParUser("freelancer",22);
+        Listformations = FormationService.getInstance().getFParUser("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<Listformations.size();i++){
              this.add(addMaFormationholder(Listformations.get(i), form));
          }

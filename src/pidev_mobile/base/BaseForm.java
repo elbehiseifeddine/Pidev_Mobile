@@ -13,11 +13,13 @@ import com.codename1.components.ScaleImageLabel;
 import com.codename1.io.Preferences;
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
@@ -104,11 +106,25 @@ public class BaseForm extends Form {
         Label nom = new Label(Preferences.get("prenom", "") + " " + Preferences.get("nom", null));
         Label email = new Label(Preferences.get("email", null));
         Label space = new Label(" ");
-        tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl,
-                FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
-        ));
+        Image placeholder = Image.createImage(300, 300, 0xbfc9d2); //square image set to 10% of screen width
+        EncodedImage encImage = EncodedImage.createFromImage(placeholder, false);
+        if (Preferences.get("type", null).equals("SuperAdmin")|| Preferences.get("type", null).equals("Admin des reclamations")) {
+             
+            tb.addComponentToSideMenu(LayeredLayout.encloseIn(
+                    sl,
+                    FlowLayout.encloseCenterBottom(
+                           new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
+                    ));
+        } else {
+            URLImage image = URLImage.createToStorage(encImage, Preferences.get("photo_de_profile", null), "file:///C:/Users/seifeddine/Desktop/PiDev/public/picture/" + Preferences.get("photo_de_profile", null));
+            image.fetch();
+            tb.addComponentToSideMenu(LayeredLayout.encloseIn(
+                    sl,
+                    FlowLayout.encloseCenterBottom(
+                            new Label(image.scaled(300, 300), "PictureWhiteBackgrond")
+                    )));
+        }
+
         tb.addComponentToSideMenu(BorderLayout.south(FlowLayout.encloseCenter(nom)));
         tb.addComponentToSideMenu(BorderLayout.south(FlowLayout.encloseCenter(email)));
         tb.addComponentToSideMenu(space);
@@ -139,7 +155,7 @@ public class BaseForm extends Form {
             tb.addMaterialCommandToSideMenu(" Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE, e -> new ProfileFormSociete(res).show());
             tb.addMaterialCommandToSideMenu(" Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> {
                 Preferences.clearAll();
-                new WalkthruForm(res).show();
+                new SignInForm(res).show();
             });
 
         } else if (Preferences.get("type", null).equals("SuperAdmin")) {

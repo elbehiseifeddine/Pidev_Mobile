@@ -8,6 +8,7 @@ package pidev_mobile.gui.evenement;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ToastBar;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -37,7 +38,7 @@ private Resources res;
          //setUIID("background");
          
        
-         events = EventService.getInstance().getParticipation("freelancer",1);
+         events = EventService.getInstance().getParticipation("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<events.size();i++){
              this.add(addpartholderE(events.get(i), form));
          }
@@ -58,7 +59,7 @@ private Resources res;
          
        
         //this.setUIID("background");
-        events = EventService.getInstance().getParticipation("freelancer",1);
+        events = EventService.getInstance().getParticipation("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<events.size();i++){
              this.add(addpartholderE(events.get(i), form));
          }

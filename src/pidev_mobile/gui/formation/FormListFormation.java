@@ -9,6 +9,7 @@ import com.codename1.components.FloatingActionButton;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ToastBar;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -47,7 +48,7 @@ private Resources res;
    
 
          //formations = new ArrayList<>();
-        formations = FormationService.getInstance().getAll("freelancer",22);
+        formations = FormationService.getInstance().getAll("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
         for(int i=0;i<formations.size();i++){
             this.add(addFromationHolder(formations.get(i),form));
         }

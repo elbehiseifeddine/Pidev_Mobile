@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="03a852759cb655ee7eccb7d2764887ce.png"  />
+    <image name="0aa294e623b54c22f1a941684fd4ab89.png"  />
+    <image name="0ff1cc9f87a4529213d9e5199fd08b21.png"  />
+    <image name="1.png"  />
+    <image name="1200x630wa.png"  />
+    <image name="153134213_139988584653350_529718377703007146_n.jpg"  />
+    <image name="2.png"  />
+    <image name="263c75d03a7c4baf5f15fdf9061b5546.png"  />
+    <image name="37dc6e127ecbba7eeb136c2bfc961f7b.png"  />
+    <image name="3ds max.png"  />
+    <image name="5.png"  />
+    <image name="66204b91a6a5baa9e4b5a3883c184ef5.png"  />
+    <image name="73dd9cb67cfdb7061c841bec2b8f66f6.png"  />
+    <image name="75eeccfc8c10031c7f6b2e7c125f07b3.png"  />
     <image name="activation-background.jpg"  />
+    <image name="avec costume.jpg"  />
     <image name="background.png"  />
+    <image name="c445ba15ef98d5bacf0ee4e63da7f996.png"  />
+    <image name="cf267dda0d663b8199dd43afec21252b.png"  />
+    <image name="chart.png"  />
+    <image name="chart2.png"  />
     <image name="confirmation-background.jpg"  />
     <image name="dog.jpg"  />
+    <image name="event 1.jpg"  />
+    <image name="event 2.jpg"  />
+    <image name="event 3.jpg"  />
     <image name="facebook-logo.png" type="multi"  />
+    <image name="fc37ccd00e9846d92e31bcbb4e3ebc26.png"  />
+    <image name="g1k92ei3uim41.jpg"  />
+    <image name="ic_launcher.png"  />
+    <image name="img-1.jpg"  />
+    <image name="Logo complet (1).png"  />
     <image name="logo.png"  />
     <image name="LogoR.png"  />
     <image name="news-item-1.jpg"  />
@@ -21,12 +48,19 @@
     <image name="profile-background.jpg"  />
     <image name="profile-pic.jpg" type="multi"  />
     <image name="ProfileBackground.jpg"  />
+    <image name="publication 1.jpg"  />
+    <image name="publication 2.jpg"  />
+    <image name="publication 3.png"  />
+    <image name="publication4.jpg"  />
     <image name="python.png"  />
     <image name="Reclamation.png"  />
+    <image name="sans costume 1.jpg"  />
+    <image name="sans costume 2.jpg"  />
     <image name="share.png"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
     <image name="smily.png" type="multi"  />
+    <image name="symfony.png"  />
     <image name="TextField.borderBottom_1.png" type="multi"  />
     <image name="TextField.borderBottomL_1.png" type="multi"  />
     <image name="TextField.borderBottomR_1.png" type="multi"  />
@@ -420,6 +454,7 @@
     <image name="timeline-background.jpg"  />
     <image name="Toolbar.jpg"  />
     <image name="twitter-logo.png" type="multi"  />
+    <image name="untiteled.jpg"  />
     <image name="welcome-background.jpg"  />
     <image name="welcome-slide-1.png" type="multi"  />
     <image name="welcome-slide-2.png" type="multi"  />

@@ -7,6 +7,7 @@ package pidev_mobile.gui.evenement;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -39,7 +40,7 @@ private Resources res;
         
 
          //formations = new ArrayList<>();
-        events = EventService.getInstance().getAll("freelancer",1);
+        events = EventService.getInstance().getAll("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
         for(int i=0;i<events.size();i++){
             this.add(addEventHolder(events.get(i),form));
         }

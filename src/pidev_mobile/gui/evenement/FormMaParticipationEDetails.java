@@ -9,6 +9,7 @@ import com.codename1.components.FloatingActionButton;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ShareButton;
 import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Preferences;
 import com.codename1.payment.Purchase;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
@@ -111,8 +112,8 @@ public class FormMaParticipationEDetails extends BaseForm {
 fab.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent evt) {
-                 new EventService().SupprimerEventPart("freelancer",1,ev.getId());
-                  FormAcceuilFormation p=(FormAcceuilFormation)previous;
+                 new EventService().SupprimerEventPart("freelancer",(int) Math.round(Preferences.get("id", 1.1)),ev.getId());
+                  FormAcceuilEvent p=(FormAcceuilEvent)previous;
                  p.refreshLayout();
                  
               }

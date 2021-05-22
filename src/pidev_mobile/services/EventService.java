@@ -227,7 +227,7 @@ public class EventService {
    
    public boolean SupprimerEventPart(String type,int idu,int ide){
         ResultOK=false;
-        String url=BASE_URL+"/deleteEventPartMobile?type="+type+"&idu="+idu+"&ide"+ide;
+        String url=BASE_URL+"/deleteEventPartMobile?type="+type+"&idu="+idu+"&ide="+ide;
          req.setUrl(url);
          req.addResponseListener(new ActionListener<NetworkEvent>() {
              @Override

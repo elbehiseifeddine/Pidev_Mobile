@@ -4,9 +4,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormAcceuilEvent.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/AdminEventService.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormMaParticipationEDetails.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormMapFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormMesEvents.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/ProfileForm.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormMesFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormListFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/utilisateur/SignInForm.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormMaParticipationFDetails.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormMaFormationDetails.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/FormationService.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormAjoutEvent.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormUpdateFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormFormationDetails.java</file>
             <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/base/BaseForm.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/emploiService.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/offreEmploi/ConsulterEmploiFreelancer.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormAcceuilFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/UtilisateurService.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormMonEventDetails.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormListMesParticipationsE.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormEventDetails.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormListMesParticipations.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/formation/FormAjoutFormation.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/Evenement.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/gui/evenement/FormEventList.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/Pidev_Mobile/src/pidev_mobile/services/EventService.java</file>
         </group>
     </open-files>
 </project-private>

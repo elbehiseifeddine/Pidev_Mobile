@@ -8,6 +8,7 @@ package pidev_mobile.gui.evenement;
 import com.codename1.components.FloatingActionButton;
 import com.codename1.components.ImageViewer;
 import com.codename1.io.Log;
+import com.codename1.io.Preferences;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -44,7 +45,7 @@ private Resources res;
         final FormMesEvents fl = this;
 
          //Listformations = new ArrayList<>();
-         ListEvent = EventService.getInstance().getEParUser("freelancer",1);
+         ListEvent = EventService.getInstance().getEParUser("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<ListEvent.size();i++){
              this.add(addMonEventholder(ListEvent.get(i),form));
          }
@@ -57,6 +58,7 @@ fab.addActionListener(new ActionListener() {
                  
               }
           });
+fab.bindFabToContainer(this.getContentPane());
 
     
        /* this.getStyle().setBgColor(0xFFFFFF);
@@ -73,7 +75,7 @@ fab.addActionListener(new ActionListener() {
          
        
         //this.setUIID("background");
-        ListEvent = EventService.getInstance().getEParUser("freelancer",1);
+        ListEvent = EventService.getInstance().getEParUser("freelancer",(int) Math.round(Preferences.get("id", 1.1)));
          for(int i=0;i<ListEvent.size();i++){
              this.add(addMonEventholder(ListEvent.get(i), form));
          }
